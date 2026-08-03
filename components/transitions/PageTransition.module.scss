@@ -12,10 +12,11 @@
   padding: clamp(1rem, 2.2vw, 2rem);
   overflow: hidden;
   background:
-    radial-gradient(circle at 12% 88%, rgba(200, 255, 69, .2), transparent 30%),
+    radial-gradient(circle at 8% 92%, rgba(200, 255, 69, .16), transparent 25%),
+    linear-gradient(112deg, rgba(255, 255, 255, .045), transparent 42%),
     var(--ink);
   color: var(--paper);
-  clip-path: inset(100% 0 0 0);
+  clip-path: polygon(-72% 100%, -28% 100%, 7% 138%, -72% 138%);
   pointer-events: none;
   will-change: clip-path;
 }
@@ -24,23 +25,43 @@
   content: "";
   position: absolute;
   inset: 0;
-  opacity: .13;
+  opacity: .11;
   background:
-    repeating-linear-gradient(90deg, transparent 0, transparent calc(12.5vw - 1px), currentColor 12.5vw),
-    repeating-linear-gradient(0deg, transparent 0, transparent 9px, rgba(247, 247, 243, .1) 10px);
+    repeating-linear-gradient(112deg, transparent 0, transparent calc(10vw - 1px), currentColor 10vw),
+    repeating-linear-gradient(0deg, transparent 0, transparent 9px, rgba(247, 247, 243, .08) 10px);
 }
 
-.veilHead, .route, .progress { position: relative; z-index: 1; }
+.veil::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  top: -35%;
+  right: clamp(-9rem, -7vw, -3rem);
+  width: clamp(4rem, 7vw, 7rem);
+  height: 175%;
+  background: var(--lime);
+  box-shadow: -18px 0 50px rgba(200, 255, 69, .12);
+  transform: rotate(-11deg);
+  transform-origin: center;
+}
+
+.veilHead, .routeBlock, .motionMark, .progress { position: relative; z-index: 1; }
 .veilHead { display: flex; justify-content: space-between; gap: 1rem; font-size: clamp(.6rem, 1vw, .72rem); font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
 .veilHead span:first-child { color: var(--lime); }
-.route { align-self: end; justify-self: end; max-width: 12ch; text-align: right; font-family: var(--font-display), sans-serif; font-size: clamp(3.3rem, 10vw, 10rem); font-weight: 800; line-height: .79; letter-spacing: -.075em; text-transform: uppercase; overflow-wrap: anywhere; }
-.progress { height: 2px; overflow: hidden; background: rgba(247,247,243,.18); }
+.routeBlock { align-self: center; justify-self: start; display: grid; gap: clamp(.65rem, 1.4vw, 1rem); width: min(82vw, 76rem); }
+.routeKicker { color: var(--lime); font-size: clamp(.65rem, 1vw, .8rem); font-weight: 850; letter-spacing: .16em; text-transform: uppercase; }
+.route { display: block; max-width: 11ch; font-family: var(--font-display), sans-serif; font-size: clamp(3.3rem, 10vw, 10rem); font-weight: 800; line-height: .79; letter-spacing: -.075em; text-transform: uppercase; overflow-wrap: anywhere; transform-origin: left center; }
+.motionMark { position: absolute; right: clamp(1.5rem, 3vw, 3rem); bottom: clamp(2.25rem, 4vw, 4rem); color: rgba(247, 247, 243, .42); font-size: clamp(.56rem, .8vw, .7rem); font-weight: 800; letter-spacing: .14em; text-transform: uppercase; writing-mode: vertical-rl; }
+.progress { width: min(34vw, 25rem); height: 3px; overflow: hidden; background: rgba(247,247,243,.18); }
 .progress span { display: block; width: 100%; height: 100%; background: var(--lime); }
 
 @media (max-width: 760px) {
   .page { min-height: calc(100svh - 62px); }
   .veil { padding-bottom: max(1rem, env(safe-area-inset-bottom)); }
-  .route { max-width: 10ch; font-size: clamp(3.1rem, 17vw, 6rem); }
+  .routeBlock { align-self: end; margin-bottom: 12svh; }
+  .route { max-width: 9ch; font-size: clamp(3.1rem, 17vw, 6rem); }
+  .motionMark { display: none; }
+  .progress { width: 48vw; }
 }
 
 @media (prefers-reduced-motion: reduce) {

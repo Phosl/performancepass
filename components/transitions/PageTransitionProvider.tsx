@@ -7,7 +7,13 @@ import { CustomEase } from "gsap/CustomEase";
 import styles from "./PageTransition.module.scss";
 
 gsap.registerPlugin(CustomEase);
-CustomEase.create("performanceTransition", ".8, 0, .2, 1");
+CustomEase.create("performanceTransition", ".76, 0, .24, 1");
+
+const diagonalWipe = {
+  start: "polygon(-72% 100%, -28% 100%, 7% 138%, -72% 138%)",
+  cover: "polygon(-32% -38%, 106% -38%, 141% 138%, -32% 138%)",
+  end: "polygon(106% -38%, 178% -38%, 178% 0%, 141% 0%)",
+} as const;
 
 interface PageTransitionContextValue {
   navigate: (href: string) => void;
@@ -71,7 +77,7 @@ export function PageTransitionProvider({ children, persistent }: { children: Rea
       gsap.set(pageRef.current, { clearProps: "transform,opacity" });
       pageRef.current.querySelector<HTMLElement>("main")?.focus({ preventScroll: true });
     }
-    if (veilRef.current) gsap.set(veilRef.current, { display: "none", clipPath: "inset(100% 0% 0% 0%)" });
+    if (veilRef.current) gsap.set(veilRef.current, { display: "none", clipPath: diagonalWipe.start });
   }, [clearTransitionState]);
 
   const navigate = useCallback((href: string) => {
@@ -106,15 +112,15 @@ export function PageTransitionProvider({ children, persistent }: { children: Rea
 
     route.textContent = getRouteLabel(destination.pathname);
     timelineRef.current?.kill();
-    gsap.set(veil, { display: "grid", clipPath: "inset(100% 0% 0% 0%)" });
-    gsap.set(route, { autoAlpha: 0, yPercent: 24 });
+    gsap.set(veil, { display: "grid", clipPath: diagonalWipe.start });
+    gsap.set(route, { autoAlpha: 0, xPercent: -16, yPercent: 22, skewX: -7 });
     gsap.set(progress, { scaleX: 0, transformOrigin: "left center" });
 
     timelineRef.current = gsap.timeline({ onComplete: commitNavigation })
-      .to(page, { y: "-7svh", scale: .955, opacity: .38, transformOrigin: "center top", duration: .64, force3D: true, ease: "performanceTransition" }, 0)
-      .to(veil, { clipPath: "inset(0% 0% 0% 0%)", duration: .64, force3D: true, ease: "performanceTransition" }, 0)
-      .to(route, { autoAlpha: 1, yPercent: 0, duration: .38, ease: "power3.out" }, .19)
-      .to(progress, { scaleX: 1, duration: .43, ease: "power2.inOut" }, .17);
+      .to(page, { x: "3vw", y: "-1.5svh", scale: .975, opacity: .28, transformOrigin: "center center", duration: .58, force3D: true, ease: "performanceTransition" }, 0)
+      .to(veil, { clipPath: diagonalWipe.cover, duration: .58, force3D: true, ease: "performanceTransition" }, 0)
+      .to(route, { autoAlpha: 1, xPercent: 0, yPercent: 0, skewX: 0, duration: .36, ease: "power3.out" }, .15)
+      .to(progress, { scaleX: 1, duration: .36, ease: "power2.inOut" }, .16);
   }, [resetPageScroll, router]);
 
   useEffect(() => {
@@ -142,11 +148,11 @@ export function PageTransitionProvider({ children, persistent }: { children: Rea
       return;
     }
 
-    gsap.set(page, { opacity: .5, y: "4svh", scale: .985, transformOrigin: "center top" });
+    gsap.set(page, { opacity: .42, x: "-3vw", y: "2svh", scale: .985, transformOrigin: "center center" });
     timelineRef.current = gsap.timeline({ onComplete: finishTransition })
-      .to(route, { autoAlpha: 0, yPercent: -18, duration: .26, ease: "power2.in" }, 0)
-      .to(veil, { clipPath: "inset(0% 0% 100% 0%)", duration: .7, force3D: true, ease: "performanceTransition" }, .06)
-      .to(page, { opacity: 1, y: 0, scale: 1, duration: .7, force3D: true, ease: "performanceTransition" }, .06);
+      .to(route, { autoAlpha: 0, xPercent: 18, yPercent: -20, skewX: -7, duration: .23, ease: "power2.in" }, 0)
+      .to(veil, { clipPath: diagonalWipe.end, duration: .62, force3D: true, ease: "performanceTransition" }, .04)
+      .to(page, { opacity: 1, x: 0, y: 0, scale: 1, duration: .62, force3D: true, ease: "performanceTransition" }, .04);
   }, [finishTransition, pathname, resetPageScroll]);
 
   useEffect(() => () => {
@@ -161,8 +167,12 @@ export function PageTransitionProvider({ children, persistent }: { children: Rea
         {persistent}
         <div className={styles.page} key={pathname} ref={pageRef}>{children}</div>
         <div className={styles.veil} ref={veilRef} aria-hidden="true">
-          <div className={styles.veilHead}><span>Performance Pass</span><span>In movimento</span></div>
-          <span className={styles.route} ref={routeRef}>Performance Pass</span>
+          <div className={styles.veilHead}><span>Performance Pass</span><span>Sempre avanti</span></div>
+          <div className={styles.routeBlock}>
+            <span className={styles.routeKicker}>Prossima destinazione</span>
+            <span className={styles.route} ref={routeRef}>Performance Pass</span>
+          </div>
+          <span className={styles.motionMark}>Run / Jump / Throw</span>
           <div className={styles.progress}><span ref={progressRef} /></div>
         </div>
       </div>
