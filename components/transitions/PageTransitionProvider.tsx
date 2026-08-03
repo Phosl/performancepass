@@ -10,9 +10,9 @@ gsap.registerPlugin(CustomEase);
 CustomEase.create("performanceTransition", ".76, 0, .24, 1");
 
 const diagonalWipe = {
-  start: "polygon(-72% 100%, -28% 100%, 7% 138%, -72% 138%)",
-  cover: "polygon(-32% -38%, 106% -38%, 141% 138%, -32% 138%)",
-  end: "polygon(106% -38%, 178% -38%, 178% 0%, 141% 0%)",
+  start: "polygon(-90% 100%, -35% 100%, 15% 150%, -90% 150%)",
+  cover: "polygon(-55% -55%, 135% -55%, 185% 155%, -55% 155%)",
+  end: "polygon(110% -55%, 195% -55%, 195% 0%, 150% 0%)",
 } as const;
 
 interface PageTransitionContextValue {
@@ -49,6 +49,7 @@ export function PageTransitionProvider({ children, persistent }: { children: Rea
   const router = useRouter();
   const pathname = usePathname();
   const pageRef = useRef<HTMLDivElement>(null);
+  const yellowPanelRef = useRef<HTMLDivElement>(null);
   const veilRef = useRef<HTMLDivElement>(null);
   const routeRef = useRef<HTMLSpanElement>(null);
   const progressRef = useRef<HTMLSpanElement>(null);
@@ -77,6 +78,7 @@ export function PageTransitionProvider({ children, persistent }: { children: Rea
       gsap.set(pageRef.current, { clearProps: "transform,opacity" });
       pageRef.current.querySelector<HTMLElement>("main")?.focus({ preventScroll: true });
     }
+    if (yellowPanelRef.current) gsap.set(yellowPanelRef.current, { display: "none", clipPath: diagonalWipe.start });
     if (veilRef.current) gsap.set(veilRef.current, { display: "none", clipPath: diagonalWipe.start });
   }, [clearTransitionState]);
 
@@ -90,6 +92,7 @@ export function PageTransitionProvider({ children, persistent }: { children: Rea
     }
 
     const page = pageRef.current;
+    const yellowPanel = yellowPanelRef.current;
     const veil = veilRef.current;
     const route = routeRef.current;
     const progress = progressRef.current;
@@ -105,22 +108,24 @@ export function PageTransitionProvider({ children, persistent }: { children: Rea
       fallbackTimerRef.current = window.setTimeout(() => window.location.assign(destination.href), 8000);
     };
 
-    if (reducedMotion || !page || !veil || !route || !progress) {
+    if (reducedMotion || !page || !yellowPanel || !veil || !route || !progress) {
       commitNavigation();
       return;
     }
 
     route.textContent = getRouteLabel(destination.pathname);
     timelineRef.current?.kill();
+    gsap.set(yellowPanel, { display: "block", clipPath: diagonalWipe.start });
     gsap.set(veil, { display: "grid", clipPath: diagonalWipe.start });
     gsap.set(route, { autoAlpha: 0, xPercent: -16, yPercent: 22, skewX: -7 });
     gsap.set(progress, { scaleX: 0, transformOrigin: "left center" });
 
     timelineRef.current = gsap.timeline({ onComplete: commitNavigation })
-      .to(page, { x: "3vw", y: "-1.5svh", scale: .975, opacity: .28, transformOrigin: "center center", duration: .58, force3D: true, ease: "performanceTransition" }, 0)
-      .to(veil, { clipPath: diagonalWipe.cover, duration: .58, force3D: true, ease: "performanceTransition" }, 0)
-      .to(route, { autoAlpha: 1, xPercent: 0, yPercent: 0, skewX: 0, duration: .36, ease: "power3.out" }, .15)
-      .to(progress, { scaleX: 1, duration: .36, ease: "power2.inOut" }, .16);
+      .to(page, { scale: .9, opacity: 0, transformOrigin: "center center", duration: .5, force3D: true, ease: "performanceTransition" }, 0)
+      .to(yellowPanel, { clipPath: diagonalWipe.cover, duration: .5, force3D: true, ease: "performanceTransition" }, 0)
+      .to(veil, { clipPath: diagonalWipe.cover, duration: .5, force3D: true, ease: "performanceTransition" }, .08)
+      .to(route, { autoAlpha: 1, xPercent: 0, yPercent: 0, skewX: 0, duration: .32, ease: "power3.out" }, .2)
+      .to(progress, { scaleX: 1, duration: .32, ease: "power2.inOut" }, .21);
   }, [resetPageScroll, router]);
 
   useEffect(() => {
@@ -130,6 +135,7 @@ export function PageTransitionProvider({ children, persistent }: { children: Rea
     }
 
     const page = pageRef.current;
+    const yellowPanel = yellowPanelRef.current;
     const veil = veilRef.current;
     const route = routeRef.current;
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -143,16 +149,17 @@ export function PageTransitionProvider({ children, persistent }: { children: Rea
       return;
     }
 
-    if (!isExpectedRoute || !veil || !route) {
-      gsap.fromTo(page, { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0, duration: .4, clearProps: "transform,opacity", ease: "power3.out", onComplete: finishTransition });
+    if (!isExpectedRoute || !yellowPanel || !veil || !route) {
+      gsap.fromTo(page, { autoAlpha: 0, scale: .9 }, { autoAlpha: 1, scale: 1, duration: .45, clearProps: "transform,opacity", ease: "power3.out", onComplete: finishTransition });
       return;
     }
 
-    gsap.set(page, { opacity: .42, x: "-3vw", y: "2svh", scale: .985, transformOrigin: "center center" });
+    gsap.set(page, { opacity: 0, scale: .9, transformOrigin: "center center" });
     timelineRef.current = gsap.timeline({ onComplete: finishTransition })
       .to(route, { autoAlpha: 0, xPercent: 18, yPercent: -20, skewX: -7, duration: .23, ease: "power2.in" }, 0)
-      .to(veil, { clipPath: diagonalWipe.end, duration: .62, force3D: true, ease: "performanceTransition" }, .04)
-      .to(page, { opacity: 1, x: 0, y: 0, scale: 1, duration: .62, force3D: true, ease: "performanceTransition" }, .04);
+      .to(veil, { clipPath: diagonalWipe.end, duration: .52, force3D: true, ease: "performanceTransition" }, .02)
+      .to(yellowPanel, { clipPath: diagonalWipe.end, duration: .52, force3D: true, ease: "performanceTransition" }, .1)
+      .to(page, { opacity: 1, scale: 1, duration: .54, force3D: true, ease: "performanceTransition" }, .08);
   }, [finishTransition, pathname, resetPageScroll]);
 
   useEffect(() => () => {
@@ -166,6 +173,7 @@ export function PageTransitionProvider({ children, persistent }: { children: Rea
       <div className={styles.wrapper}>
         {persistent}
         <div className={styles.page} key={pathname} ref={pageRef}>{children}</div>
+        <div className={styles.yellowPanel} ref={yellowPanelRef} aria-hidden="true" />
         <div className={styles.veil} ref={veilRef} aria-hidden="true">
           <div className={styles.veilHead}><span>Performance Pass</span><span>Sempre avanti</span></div>
           <div className={styles.routeBlock}>

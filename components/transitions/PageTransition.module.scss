@@ -2,11 +2,23 @@
 .page { position: relative; z-index: 1; min-height: calc(100vh - 72px); }
 :global(html.is-page-transitioning) .page { will-change: transform, opacity; }
 
+.yellowPanel,
 .veil {
   position: fixed;
-  z-index: 1000;
   inset: 0;
   display: none;
+  clip-path: polygon(-90% 100%, -35% 100%, 15% 150%, -90% 150%);
+  pointer-events: none;
+  will-change: clip-path;
+}
+
+.yellowPanel {
+  z-index: 999;
+  background: var(--lime);
+}
+
+.veil {
+  z-index: 1000;
   grid-template-rows: auto minmax(0, 1fr) auto;
   gap: clamp(1rem, 3vw, 2rem);
   padding: clamp(1rem, 2.2vw, 2rem);
@@ -16,33 +28,6 @@
     linear-gradient(112deg, rgba(255, 255, 255, .045), transparent 42%),
     var(--ink);
   color: var(--paper);
-  clip-path: polygon(-72% 100%, -28% 100%, 7% 138%, -72% 138%);
-  pointer-events: none;
-  will-change: clip-path;
-}
-
-.veil::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  opacity: .11;
-  background:
-    repeating-linear-gradient(112deg, transparent 0, transparent calc(10vw - 1px), currentColor 10vw),
-    repeating-linear-gradient(0deg, transparent 0, transparent 9px, rgba(247, 247, 243, .08) 10px);
-}
-
-.veil::after {
-  content: "";
-  position: absolute;
-  z-index: 0;
-  top: -35%;
-  right: clamp(-9rem, -7vw, -3rem);
-  width: clamp(4rem, 7vw, 7rem);
-  height: 175%;
-  background: var(--lime);
-  box-shadow: -18px 0 50px rgba(200, 255, 69, .12);
-  transform: rotate(-11deg);
-  transform-origin: center;
 }
 
 .veilHead, .routeBlock, .motionMark, .progress { position: relative; z-index: 1; }
@@ -65,5 +50,5 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .page, .veil { transform: none !important; transition: none !important; }
+  .page, .yellowPanel, .veil { transform: none !important; transition: none !important; }
 }
