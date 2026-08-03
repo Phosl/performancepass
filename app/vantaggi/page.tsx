@@ -3,7 +3,7 @@ import { BenefitsCatalog } from "@/components/catalog/BenefitsCatalog";
 
 export const metadata: Metadata = {
   title: "Vantaggi per i membri",
-  description: "Sconti e benefit riservati ai membri Performance Pass su nutrizione, attrezzatura, training e recovery.",
+  description: "Scopri vantaggi, partner e negozi affiliati Performance Pass per nutrizione, attrezzatura, training e recovery.",
 };
 
 export default function BenefitsPage() {

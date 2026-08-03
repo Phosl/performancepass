@@ -1,21 +1,21 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { ArrowLeft, Clock, LockSimple, Play, ShareNetwork } from "@phosphor-icons/react";
 import type { TrainingVideo } from "@/lib/types";
 import { useAthlete } from "@/context/AthleteContext";
 import { Badge } from "@/components/ui/Badge";
 import { FavoriteButton } from "@/components/ui/FavoriteButton";
+import { TransitionLink } from "@/components/transitions/TransitionLink";
 import styles from "./videoDetail.module.scss";
 
 export function VideoDetailView({ video }: { video: TrainingVideo }) {
   const { profile } = useAthlete();
-  const locked = video.access === "premium" && profile.membership !== "premium";
+  const locked = video.access === "premium" && profile.membership === "free";
 
   return (
     <div className={`shell ${styles.page}`}>
-      <Link href="/video" className={styles.back}><ArrowLeft size={17} weight="bold" /> Tutti i video</Link>
+      <TransitionLink href="/video" className={styles.back}><ArrowLeft size={17} weight="bold" /> Tutti i video</TransitionLink>
       <article className={styles.player}>
         <Image src={video.image} alt={video.imageAlt} fill priority sizes="(max-width: 800px) 94vw, 1180px" />
         <div className={styles.playerTop}><Badge tone={video.access}>{video.access === "premium" ? "Premium" : "Free"}</Badge><FavoriteButton videoId={video.id} /></div>
@@ -23,7 +23,7 @@ export function VideoDetailView({ video }: { video: TrainingVideo }) {
           <button type="button" aria-label={locked ? "Contenuto Premium bloccato" : `Riproduci ${video.title}`}>
             {locked ? <LockSimple size={28} weight="fill" /> : <Play size={28} weight="fill" />}
           </button>
-          <span>{locked ? "Passa a Premium per iniziare" : "Premi play per iniziare"}</span>
+          <span>{locked ? "Passa a Premium o Pro per iniziare" : "Premi play per iniziare"}</span>
         </div>
       </article>
       <div className={styles.details}>

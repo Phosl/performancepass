@@ -1,5 +1,5 @@
-import Link from "next/link";
 import { ArrowRight } from "@phosphor-icons/react/dist/ssr";
+import { TransitionLink } from "@/components/transitions/TransitionLink";
 import styles from "./ui.module.scss";
 
 interface SectionHeadingProps {
@@ -19,9 +19,9 @@ export function SectionHeading({ eyebrow, title, description, href, linkLabel = 
         {description && <p className={styles.sectionDescription}>{description}</p>}
       </div>
       {href && (
-        <Link className={styles.textLink} href={href}>
+        <TransitionLink className={styles.textLink} href={href}>
           {linkLabel}<ArrowRight size={17} weight="bold" aria-hidden="true" />
-        </Link>
+        </TransitionLink>
       )}
     </div>
   );

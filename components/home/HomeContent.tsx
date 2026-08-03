@@ -1,8 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
-import { ArrowRight, Lightning, Play, Sparkle } from "@phosphor-icons/react";
+import { Lightning, Play, Sparkle } from "@phosphor-icons/react";
 import { videos, courses, benefits } from "@/lib/mock-data";
 import { useAthlete } from "@/context/AthleteContext";
 import { getRecommendedVideos } from "@/lib/recommendations";
@@ -14,6 +13,8 @@ import { Reveal } from "@/components/ui/Reveal";
 import { VideoCard } from "@/components/cards/VideoCard";
 import { CourseCard } from "@/components/cards/CourseCard";
 import { BenefitCard } from "@/components/cards/BenefitCard";
+import { TransitionLink } from "@/components/transitions/TransitionLink";
+import { MembershipComparison } from "@/components/membership/MembershipComparison";
 import styles from "./home.module.scss";
 
 export function HomeContent() {
@@ -33,7 +34,7 @@ export function HomeContent() {
               <ButtonLink href={profile.onboardingComplete ? "/dashboard" : "/onboarding"} variant="secondary" arrow>
                 {profile.onboardingComplete ? "Vai al tuo percorso" : "Crea il tuo profilo"}
               </ButtonLink>
-              <Link href="#scelti-per-te" className={styles.inlineLink}><Play size={18} weight="fill" aria-hidden="true" /> Esplora i contenuti</Link>
+              <TransitionLink href="#scelti-per-te" className={styles.inlineLink}><Play size={18} weight="fill" aria-hidden="true" /> Esplora i contenuti</TransitionLink>
             </div>
             <div className={styles.heroStats} aria-label="Numeri della piattaforma">
               <span><strong>120+</strong><small>video guidati</small></span>
@@ -42,14 +43,14 @@ export function HomeContent() {
             </div>
           </div>
           <div className={styles.heroVisual}>
-            <Image src="/images/running.svg" alt="Atleta che corre durante una sessione Performance Pass" fill priority sizes="(max-width: 800px) 94vw, 48vw" />
+            <Image src="/images/generated/running-performance.webp" alt="Atleta che corre durante una sessione Performance Pass" fill priority sizes="(max-width: 800px) 94vw, 48vw" />
             <div className={styles.heroVisualTop}>
               <Badge tone="premium">Workout del giorno</Badge>
               <span>18 min</span>
             </div>
             <div className={styles.heroVisualBottom}>
               <div><small>RUNNING · INTERMEDIO</small><strong>Potenza nella corsa</strong></div>
-              <Link href="/video/potenza-nella-corsa" aria-label="Riproduci Potenza nella corsa"><Play size={20} weight="fill" aria-hidden="true" /></Link>
+              <TransitionLink href="/video/potenza-nella-corsa" aria-label="Riproduci Potenza nella corsa"><Play size={20} weight="fill" aria-hidden="true" /></TransitionLink>
             </div>
             <div className={styles.floatCard}><Lightning size={18} weight="fill" aria-hidden="true" /><span><strong>+8%</strong> questa settimana</span></div>
           </div>
@@ -90,18 +91,7 @@ export function HomeContent() {
         </section>
       </Reveal>
 
-      <section className={styles.membership}>
-        <div className={`shell ${styles.membershipInner}`}>
-          <div>
-            <Badge tone="accent">Performance Pass Premium</Badge>
-            <h2>Più contenuti.<br />Più vantaggi. Più tu.</h2>
-          </div>
-          <div className={styles.membershipAction}>
-            <p>Sblocca l’intero catalogo, tutti i mini-corsi e i vantaggi riservati.</p>
-            <ButtonLink href="/profilo" variant="secondary">Scopri Premium <ArrowRight size={18} weight="bold" /></ButtonLink>
-          </div>
-        </div>
-      </section>
+      <Reveal><MembershipComparison /></Reveal>
     </>
   );
 }

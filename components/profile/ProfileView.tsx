@@ -5,6 +5,7 @@ import { Check, Crown, Heart, SignOut, Sparkle, UserCircle } from "@phosphor-ico
 import { useAthlete } from "@/context/AthleteContext";
 import { videos } from "@/lib/mock-data";
 import { frequencies, goals, levels, sports, type AthleteProfile } from "@/lib/types";
+import { membershipPlanById } from "@/lib/membership";
 import { VideoCard } from "@/components/cards/VideoCard";
 import styles from "./profile.module.scss";
 
@@ -15,6 +16,9 @@ export function ProfileView() {
   const [form, setForm] = useState<EditableProfile>(() => ({ name: profile.name, sport: profile.sport, level: profile.level, goal: profile.goal, frequency: profile.frequency }));
   const [saved, setSaved] = useState(false);
   const favorites = useMemo(() => videos.filter((video) => profile.favorites.includes(video.id)), [profile.favorites]);
+  const activePlan = membershipPlanById[profile.membership];
+  const nextMembership = profile.membership === "free" ? "premium" : profile.membership === "premium" ? "pro" : "free";
+  const nextPlan = membershipPlanById[nextMembership];
 
   useEffect(() => {
     if (hydrated) setForm({ name: profile.name, sport: profile.sport, level: profile.level, goal: profile.goal, frequency: profile.frequency });
@@ -36,7 +40,7 @@ export function ProfileView() {
         <div className={styles.avatar}><UserCircle size={46} weight="duotone" aria-hidden="true" /></div>
         <h1>{profile.name}</h1>
         <p>{profile.sport} · {profile.level}</p>
-        <span className={styles.membershipBadge}><Crown size={14} weight="fill" aria-hidden="true" />Pass {profile.membership === "premium" ? "Premium" : "Free"}</span>
+        <span className={styles.membershipBadge}><Crown size={14} weight="fill" aria-hidden="true" />{profile.membership === "pro" ? activePlan.name : `Pass ${activePlan.name}`}</span>
         <nav aria-label="Sezioni profilo">
           <a href="#dati" className={styles.active}><UserCircle size={18} /> Profilo sportivo</a>
           <a href="#preferiti"><Heart size={18} /> Preferiti <span>{favorites.length}</span></a>
@@ -59,8 +63,8 @@ export function ProfileView() {
         </section>
 
         <section id="membership" className={`${styles.panel} ${styles.membershipPanel}`}>
-          <div><span><Sparkle size={20} weight="fill" /></span><p>PERFORMANCE PASS PREMIUM</p><h2>Porta il tuo percorso al livello successivo.</h2><ul><li><Check size={16} weight="bold" /> Tutti i video e i mini-corsi</li><li><Check size={16} weight="bold" /> Vantaggi partner senza limiti</li><li><Check size={16} weight="bold" /> Nuovi percorsi ogni mese</li></ul></div>
-          <div className={styles.price}><span><strong>8,99 €</strong> / mese</span><button type="button" onClick={() => updateProfile({ membership: profile.membership === "premium" ? "free" : "premium" })}>{profile.membership === "premium" ? "Torna al piano Free" : "Attiva la demo Premium"}</button><small>Nessun pagamento: modalità demo</small></div>
+          <div><span><Sparkle size={20} weight="fill" /></span><p>IL TUO PERFORMANCE PASS · {activePlan.name.toUpperCase()}</p><h2>{activePlan.description}</h2><ul>{activePlan.highlights.map((highlight) => <li key={highlight}><Check size={16} weight="bold" /> {highlight}</li>)}</ul></div>
+          <div className={styles.price}><span><strong>{activePlan.price}</strong> {activePlan.cadence}</span><button type="button" onClick={() => updateProfile({ membership: nextMembership })}>{profile.membership === "pro" ? "Torna al piano Free" : nextPlan.cta}</button><small>Nessun pagamento: modalità demo</small></div>
         </section>
 
         <section id="preferiti" className={styles.favoritesSection}>

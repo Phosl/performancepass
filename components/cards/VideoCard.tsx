@@ -1,13 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { useRef } from "react";
 import { Clock, Play } from "@phosphor-icons/react";
 import gsap from "gsap";
 import type { TrainingVideo } from "@/lib/types";
 import { Badge } from "@/components/ui/Badge";
 import { FavoriteButton } from "@/components/ui/FavoriteButton";
+import { TransitionLink } from "@/components/transitions/TransitionLink";
 import styles from "./cards.module.scss";
 
 export function VideoCard({ video, featured = false }: { video: TrainingVideo; featured?: boolean }) {
@@ -29,7 +29,7 @@ export function VideoCard({ video, featured = false }: { video: TrainingVideo; f
     >
       <div className={styles.media}>
         <Image ref={imageRef} src={video.image} alt={video.imageAlt} fill sizes={featured ? "(max-width: 760px) 90vw, 55vw" : "(max-width: 640px) 90vw, (max-width: 1000px) 45vw, 30vw"} />
-        <Link href={`/video/${video.slug}`} className={styles.mediaLink} aria-label={`Apri il video ${video.title}`} />
+        <TransitionLink href={`/video/${video.slug}`} className={styles.mediaLink} aria-label={`Apri il video ${video.title}`} />
         <div className={styles.mediaTop}>
           <Badge tone={video.access}>{video.access === "premium" ? "Premium" : "Free"}</Badge>
           <FavoriteButton videoId={video.id} />
@@ -38,7 +38,7 @@ export function VideoCard({ video, featured = false }: { video: TrainingVideo; f
       </div>
       <div className={styles.videoContent}>
         <p className={styles.cardEyebrow}>{video.eyebrow}</p>
-        <h3><Link href={`/video/${video.slug}`}>{video.title}</Link></h3>
+        <h3><TransitionLink href={`/video/${video.slug}`}>{video.title}</TransitionLink></h3>
         <div className={styles.meta}>
           <span><Clock size={15} aria-hidden="true" />{video.duration} min</span>
           <span>{video.level}</span>

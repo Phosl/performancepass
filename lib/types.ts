@@ -7,7 +7,8 @@ export type Sport = (typeof sports)[number];
 export type AthleteLevel = (typeof levels)[number];
 export type Goal = (typeof goals)[number];
 export type Frequency = (typeof frequencies)[number];
-export type Membership = "free" | "premium";
+export type Membership = "free" | "premium" | "pro";
+export type ContentAccess = Exclude<Membership, "pro">;
 
 export interface AthleteProfile {
   name: string;
@@ -27,7 +28,7 @@ export interface TrainingVideo {
   eyebrow: string;
   duration: number;
   level: AthleteLevel;
-  access: Membership;
+  access: ContentAccess;
   tags: string[];
   sports: Sport[];
   goals: Goal[];
@@ -63,4 +64,15 @@ export interface Benefit {
   value: string;
   code: string;
   accent: "lime" | "orange" | "blue" | "violet";
+}
+
+export interface PartnerStore {
+  id: string;
+  name: string;
+  category: "Nutrizione" | "Training" | "Attrezzatura" | "Outdoor" | "Recovery" | "Servizi";
+  description: string;
+  availability: "Online" | "In store" | "Online + In store";
+  location: string;
+  memberBenefit: string;
+  accent: "lime" | "orange" | "blue" | "violet" | "sand";
 }

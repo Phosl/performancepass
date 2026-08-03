@@ -1,5 +1,5 @@
-import Link from "next/link";
 import { ArrowRight } from "@phosphor-icons/react/dist/ssr";
+import { TransitionLink } from "@/components/transitions/TransitionLink";
 import styles from "./ui.module.scss";
 
 interface ButtonLinkProps {
@@ -12,9 +12,9 @@ interface ButtonLinkProps {
 
 export function ButtonLink({ href, children, variant = "primary", arrow = false, className = "" }: ButtonLinkProps) {
   return (
-    <Link className={`${styles.button} ${styles[variant]} ${className}`} href={href}>
+    <TransitionLink className={`${styles.button} ${styles[variant]} ${className}`} href={href}>
       <span>{children}</span>
       {arrow && <ArrowRight size={18} weight="bold" aria-hidden="true" />}
-    </Link>
+    </TransitionLink>
   );
 }

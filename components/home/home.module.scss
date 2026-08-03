@@ -39,12 +39,6 @@
 .courseGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; color: var(--ink); }
 .benefitGrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
 
-.membership { padding: 1rem 0 5.5rem; }
-.membershipInner { display: grid; grid-template-columns: 1fr .62fr; gap: 3rem; align-items: end; padding: clamp(2rem, 5vw, 4.5rem); border-radius: 32px; background: var(--ink); color: white; }
-.membership h2 { margin-top: 1.2rem; font-family: var(--font-display), sans-serif; font-size: clamp(2.6rem, 5vw, 5.1rem); line-height: .92; letter-spacing: -.075em; }
-.membershipAction { display: grid; gap: 1.3rem; justify-items: start; }
-.membershipAction p { color: rgba(255,255,255,.6); line-height: 1.6; }
-
 @media (max-width: 960px) {
   .heroGrid { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
   .heroVisual { min-height: 530px; }
@@ -66,6 +60,4 @@
   .heroVisualBottom strong { font-size: 1.35rem; }
   .videoGrid, .courseGrid, .benefitGrid { grid-template-columns: 1fr; }
   .videoGrid > :first-child { grid-column: auto; }
-  .membership { padding-bottom: 2.3rem; }
-  .membershipInner { grid-template-columns: 1fr; gap: 2rem; border-radius: 24px; }
 }

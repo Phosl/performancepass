@@ -3,11 +3,11 @@
 import { useMemo, useState } from "react";
 import { FunnelSimple } from "@phosphor-icons/react";
 import { videos } from "@/lib/mock-data";
-import { sports, type Membership, type Sport } from "@/lib/types";
+import { sports, type ContentAccess, type Sport } from "@/lib/types";
 import { VideoCard } from "@/components/cards/VideoCard";
 import styles from "./catalog.module.scss";
 
-type AccessFilter = "tutti" | Membership;
+type AccessFilter = "tutti" | ContentAccess;
 
 export function VideoCatalog() {
   const [sport, setSport] = useState<"Tutti" | Sport>("Tutti");

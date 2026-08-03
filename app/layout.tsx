@@ -2,6 +2,8 @@ import type { Metadata, Viewport } from "next";
 import { Inter, Manrope } from "next/font/google";
 import { AppProviders } from "@/components/providers/AppProviders";
 import { AppHeader } from "@/components/layout/AppHeader";
+import { SiteFooter } from "@/components/layout/SiteFooter";
+import { PageTransitionProvider } from "@/components/transitions/PageTransitionProvider";
 import "./globals.scss";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-body", display: "swap" });
@@ -21,8 +23,10 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="it">
       <body className={`${inter.variable} ${manrope.variable}`}>
         <AppProviders>
-          <AppHeader />
-          <main>{children}</main>
+          <PageTransitionProvider persistent={<AppHeader />}>
+            <main id="main-content" tabIndex={-1}>{children}</main>
+            <SiteFooter />
+          </PageTransitionProvider>
         </AppProviders>
       </body>
     </html>

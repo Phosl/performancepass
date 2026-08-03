@@ -21,6 +21,12 @@ button, input, select { font: inherit; }
 button { color: inherit; }
 img { display: block; max-width: 100%; }
 main { overflow: clip; }
+main:focus { outline: none; }
+.is-page-transitioning, .is-page-transitioning body { overflow: hidden !important; cursor: wait; }
+.is-page-transitioning a,
+.is-page-transitioning button,
+.is-page-transitioning input,
+.is-page-transitioning select { pointer-events: none; }
 .shell { width: min(1180px, calc(100% - 3rem)); margin-inline: auto; }
 .section { padding: 4.5rem 0; }
 .pageTop { padding: 4.4rem 0 2rem; }

@@ -1,10 +1,10 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { useRouter } from "next/navigation";
 import { ArrowLeft, ArrowRight, Barbell, Bicycle, PersonSimpleRun, PersonSimpleSwim, TennisBall, YinYang } from "@phosphor-icons/react";
 import { useAthlete } from "@/context/AthleteContext";
 import { frequencies, goals, levels, sports, type AthleteProfile, type Sport } from "@/lib/types";
+import { usePageTransition } from "@/components/transitions/PageTransitionProvider";
 import styles from "./onboarding.module.scss";
 
 const sportIcons = {
@@ -24,7 +24,7 @@ const steps = [
 ] as const;
 
 export function OnboardingFlow() {
-  const router = useRouter();
+  const { navigate } = usePageTransition();
   const { profile, updateProfile } = useAthlete();
   const [step, setStep] = useState(0);
   const [draft, setDraft] = useState(() => ({ sport: profile.sport, level: profile.level, goal: profile.goal, frequency: profile.frequency }));
@@ -41,7 +41,7 @@ export function OnboardingFlow() {
       return;
     }
     updateProfile({ ...(draft as Pick<AthleteProfile, "sport" | "level" | "goal" | "frequency">), onboardingComplete: true });
-    router.push("/dashboard");
+    navigate("/dashboard");
   };
 
   return (
@@ -73,7 +73,7 @@ export function OnboardingFlow() {
         </div>
 
         <div className={styles.actions}>
-          <button type="button" className={styles.back} onClick={() => step > 0 ? setStep((value) => value - 1) : router.push("/")}>
+          <button type="button" className={styles.back} onClick={() => step > 0 ? setStep((value) => value - 1) : navigate("/")}>
             <ArrowLeft size={18} weight="bold" aria-hidden="true" /> Indietro
           </button>
           <button type="button" className={styles.continue} onClick={continueFlow}>

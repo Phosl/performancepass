@@ -1,0 +1,228 @@
+.section {
+  padding: clamp(4rem, 8vw, 7.5rem) 0;
+  overflow: hidden;
+  background: #ecece6;
+}
+
+.heading {
+  display: grid;
+  grid-template-columns: 1fr minmax(260px, 390px);
+  gap: 2rem;
+  align-items: end;
+  margin-bottom: 2.2rem;
+}
+
+.heading h2 {
+  margin-top: .85rem;
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(2.7rem, 5.4vw, 5.4rem);
+  line-height: .92;
+  letter-spacing: -.075em;
+}
+
+.heading > p {
+  color: var(--muted);
+  font-size: .94rem;
+  line-height: 1.65;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  color: #647f0d;
+  font-size: .67rem;
+  font-weight: 820;
+  letter-spacing: .11em;
+  text-transform: uppercase;
+}
+
+.scrollHint {
+  display: none;
+  margin: 0 0 .8rem;
+  color: var(--muted);
+  font-size: .68rem;
+}
+
+.tableScroll {
+  overflow-x: auto;
+  border: 1px solid rgba(15, 15, 13, .09);
+  border-radius: 30px;
+  background: #fff;
+  box-shadow: 0 24px 70px rgba(25, 25, 20, .07);
+  scrollbar-width: thin;
+}
+
+.tableScroll table {
+  width: 100%;
+  min-width: 850px;
+  border-collapse: separate;
+  border-spacing: 0;
+  table-layout: fixed;
+}
+
+.tableScroll th,
+.tableScroll td {
+  width: 24.5%;
+  padding: 1rem 1.25rem;
+  border-right: 1px solid rgba(15, 15, 13, .08);
+  border-bottom: 1px solid rgba(15, 15, 13, .08);
+  text-align: left;
+}
+
+.tableScroll th:first-child,
+.tableScroll td:first-child { width: 26.5%; }
+.tableScroll tr > :last-child { border-right: 0; }
+.tableScroll tfoot tr > * { border-bottom: 0; }
+
+.tableScroll thead th {
+  height: 270px;
+  padding: 1.35rem;
+  vertical-align: top;
+  background: #fff;
+}
+
+.tableScroll thead .featureHeading {
+  color: var(--muted);
+  font-size: .66rem;
+  font-weight: 790;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.tableScroll thead .premium { background: rgba(191, 242, 48, .18); }
+.tableScroll thead .pro { background: rgba(128, 98, 222, .1); }
+
+.planTopline {
+  min-height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .4rem;
+  color: var(--muted);
+  font-size: .61rem;
+  font-weight: 770;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+}
+
+.planTopline small {
+  padding: .28rem .45rem;
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--lime);
+  font-size: .51rem;
+  letter-spacing: .05em;
+}
+
+.tableScroll thead strong {
+  display: block;
+  margin-top: .8rem;
+  font-family: var(--font-display), sans-serif;
+  font-size: 2rem;
+  letter-spacing: -.055em;
+}
+
+.tableScroll thead p {
+  min-height: 53px;
+  margin-top: .55rem;
+  color: var(--muted);
+  font-size: .7rem;
+  line-height: 1.45;
+}
+
+.price {
+  display: flex;
+  align-items: baseline;
+  gap: .4rem;
+  margin-top: 1.2rem;
+}
+
+.price b {
+  font-family: var(--font-display), sans-serif;
+  font-size: 1.55rem;
+  letter-spacing: -.045em;
+}
+
+.price span { color: var(--muted); font-size: .62rem; }
+
+.tableScroll tbody th,
+.tableScroll tfoot th {
+  color: var(--ink);
+  font-size: .72rem;
+  font-weight: 730;
+}
+
+.tableScroll tbody td {
+  color: #45453f;
+  font-size: .7rem;
+  line-height: 1.35;
+}
+
+.included,
+.notIncluded {
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  font-weight: 680;
+}
+
+.included svg { color: #719400; }
+.notIncluded { color: #aaa; }
+
+.tableScroll tfoot th,
+.tableScroll tfoot td { padding-top: 1.3rem; padding-bottom: 1.3rem; }
+
+.tableScroll button {
+  width: 100%;
+  min-height: 45px;
+  border: 1px solid var(--ink);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  font-size: .69rem;
+  font-weight: 760;
+  transition: transform 180ms ease, background-color 180ms ease, color 180ms ease;
+}
+
+.tableScroll button:hover:not(:disabled) { transform: translateY(-2px); }
+.tableScroll button:focus-visible { outline: 3px solid rgba(137, 179, 0, .28); outline-offset: 2px; }
+.tableScroll .premiumButton { border-color: var(--lime); background: var(--lime); }
+.tableScroll .proButton { border-color: var(--ink); background: var(--ink); color: #fff; }
+.tableScroll button:disabled { border-color: #d7d7d1; background: #ecece7; color: #777; cursor: default; }
+
+.note {
+  min-height: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: .8rem;
+  color: var(--muted);
+  font-size: .62rem;
+}
+
+.note span:last-child { color: #627e08; font-weight: 740; text-align: right; }
+
+@media (max-width: 760px) {
+  .section { padding-block: 4rem; }
+  .heading { grid-template-columns: 1fr; gap: 1rem; margin-bottom: 1.4rem; }
+  .heading h2 { font-size: clamp(2.7rem, 13vw, 4.3rem); }
+  .heading > p { max-width: 33rem; font-size: .83rem; }
+  .scrollHint { display: block; }
+  .tableScroll { margin-right: calc(var(--shell-gutter, 1rem) * -1); border-radius: 24px 0 0 24px; }
+  .tableScroll th:first-child {
+    position: sticky;
+    z-index: 2;
+    left: 0;
+    background: #fff;
+    box-shadow: 8px 0 16px rgba(15, 15, 13, .05);
+  }
+  .tableScroll thead th:first-child { z-index: 3; }
+  .note { display: grid; }
+  .note span:last-child { text-align: left; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tableScroll button { transition: none; }
+}

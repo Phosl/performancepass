@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { ArrowRight, CalendarBlank, Check, Fire, Play, Target } from "@phosphor-icons/react";
 import { useAthlete } from "@/context/AthleteContext";
 import { courses, videos } from "@/lib/mock-data";
@@ -12,6 +11,7 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { Reveal } from "@/components/ui/Reveal";
 import { VideoCard } from "@/components/cards/VideoCard";
 import { CourseCard } from "@/components/cards/CourseCard";
+import { TransitionLink } from "@/components/transitions/TransitionLink";
 import styles from "./dashboard.module.scss";
 
 export function DashboardView() {
@@ -37,7 +37,7 @@ export function DashboardView() {
               <span>{profile.sport}</span><i />
               <span>{profile.level}</span><i />
               <span>{profile.goal}</span>
-              <Link href="/profilo">Modifica profilo</Link>
+              <TransitionLink href="/profilo">Modifica profilo</TransitionLink>
             </div>
           </div>
 
@@ -55,7 +55,7 @@ export function DashboardView() {
               <div className={styles.nextTop}><Badge tone={lead.access}>Consigliato per te</Badge><span>{lead.duration} min</span></div>
               <div className={styles.nextBottom}>
                 <div><small>{lead.eyebrow}</small><h2>{lead.title}</h2><p>{lead.description}</p></div>
-                <Link href={`/video/${lead.slug}`} aria-label={`Inizia ${lead.title}`}><Play size={21} weight="fill" aria-hidden="true" /></Link>
+                <TransitionLink href={`/video/${lead.slug}`} aria-label={`Inizia ${lead.title}`}><Play size={21} weight="fill" aria-hidden="true" /></TransitionLink>
               </div>
             </article>
 
@@ -89,7 +89,7 @@ export function DashboardView() {
               <p>IL TUO MINI-CORSO</p>
               <h2>Un passo alla volta, con una direzione chiara.</h2>
               <span>Riprendi da dove hai lasciato. Le prime due lezioni sono incluse nel tuo pass Free.</span>
-              <Link href="/corsi">Esplora i corsi <ArrowRight size={17} weight="bold" /></Link>
+              <TransitionLink href="/corsi">Esplora i corsi <ArrowRight size={17} weight="bold" /></TransitionLink>
             </div>
             <CourseCard course={courses[0]} />
           </div>
