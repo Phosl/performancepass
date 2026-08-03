@@ -5,9 +5,11 @@
 .yellowPanel,
 .veil {
   position: fixed;
-  inset: 0;
+  inset: -4px;
   display: none;
-  clip-path: polygon(-90% 100%, -35% 100%, 15% 150%, -90% 150%);
+  clip-path: polygon(-110% 100%, -42% 100%, 8% 150%, -110% 150%);
+  -webkit-clip-path: polygon(-110% 100%, -42% 100%, 8% 150%, -110% 150%);
+  backface-visibility: hidden;
   pointer-events: none;
   will-change: clip-path;
 }

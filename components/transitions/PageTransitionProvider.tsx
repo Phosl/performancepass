@@ -10,10 +10,12 @@ gsap.registerPlugin(CustomEase);
 CustomEase.create("performanceTransition", ".76, 0, .24, 1");
 
 const diagonalWipe = {
-  start: "polygon(-90% 100%, -35% 100%, 15% 150%, -90% 150%)",
-  cover: "polygon(-55% -55%, 135% -55%, 185% 155%, -55% 155%)",
-  end: "polygon(110% -55%, 195% -55%, 195% 0%, 150% 0%)",
+  start: "polygon(-110% 100%, -42% 100%, 8% 150%, -110% 150%)",
+  cover: "polygon(-10% -10%, 110% -10%, 110% 110%, -10% 110%)",
+  end: "polygon(102% -50%, 170% -50%, 220% 0%, 102% 0%)",
 } as const;
+
+const clipPathState = (value: string) => ({ clipPath: value, webkitClipPath: value });
 
 interface PageTransitionContextValue {
   navigate: (href: string) => void;
@@ -78,8 +80,8 @@ export function PageTransitionProvider({ children, persistent }: { children: Rea
       gsap.set(pageRef.current, { clearProps: "transform,opacity" });
       pageRef.current.querySelector<HTMLElement>("main")?.focus({ preventScroll: true });
     }
-    if (yellowPanelRef.current) gsap.set(yellowPanelRef.current, { display: "none", clipPath: diagonalWipe.start });
-    if (veilRef.current) gsap.set(veilRef.current, { display: "none", clipPath: diagonalWipe.start });
+    if (yellowPanelRef.current) gsap.set(yellowPanelRef.current, { display: "none", ...clipPathState(diagonalWipe.start) });
+    if (veilRef.current) gsap.set(veilRef.current, { display: "none", ...clipPathState(diagonalWipe.start) });
   }, [clearTransitionState]);
 
   const navigate = useCallback((href: string) => {
@@ -115,17 +117,18 @@ export function PageTransitionProvider({ children, persistent }: { children: Rea
 
     route.textContent = getRouteLabel(destination.pathname);
     timelineRef.current?.kill();
-    gsap.set(yellowPanel, { display: "block", clipPath: diagonalWipe.start });
-    gsap.set(veil, { display: "grid", clipPath: diagonalWipe.start });
+    gsap.set(yellowPanel, { display: "block", ...clipPathState(diagonalWipe.start) });
+    gsap.set(veil, { display: "grid", ...clipPathState(diagonalWipe.start) });
     gsap.set(route, { autoAlpha: 0, xPercent: -16, yPercent: 22, skewX: -7 });
     gsap.set(progress, { scaleX: 0, transformOrigin: "left center" });
 
     timelineRef.current = gsap.timeline({ onComplete: commitNavigation })
       .to(page, { scale: .9, opacity: 0, transformOrigin: "center center", duration: .5, force3D: true, ease: "performanceTransition" }, 0)
-      .to(yellowPanel, { clipPath: diagonalWipe.cover, duration: .5, force3D: true, ease: "performanceTransition" }, 0)
-      .to(veil, { clipPath: diagonalWipe.cover, duration: .5, force3D: true, ease: "performanceTransition" }, .08)
+      .to(yellowPanel, { ...clipPathState(diagonalWipe.cover), duration: .5, force3D: true, ease: "performanceTransition" }, 0)
+      .to(veil, { ...clipPathState(diagonalWipe.cover), duration: .5, force3D: true, ease: "performanceTransition" }, .08)
       .to(route, { autoAlpha: 1, xPercent: 0, yPercent: 0, skewX: 0, duration: .32, ease: "power3.out" }, .2)
-      .to(progress, { scaleX: 1, duration: .32, ease: "power2.inOut" }, .21);
+      .to(progress, { scaleX: 1, duration: .32, ease: "power2.inOut" }, .21)
+      .to(route, { autoAlpha: 1, duration: .07, ease: "none" }, .58);
   }, [resetPageScroll, router]);
 
   useEffect(() => {
@@ -157,8 +160,8 @@ export function PageTransitionProvider({ children, persistent }: { children: Rea
     gsap.set(page, { opacity: 0, scale: .9, transformOrigin: "center center" });
     timelineRef.current = gsap.timeline({ onComplete: finishTransition })
       .to(route, { autoAlpha: 0, xPercent: 18, yPercent: -20, skewX: -7, duration: .23, ease: "power2.in" }, 0)
-      .to(veil, { clipPath: diagonalWipe.end, duration: .52, force3D: true, ease: "performanceTransition" }, .02)
-      .to(yellowPanel, { clipPath: diagonalWipe.end, duration: .52, force3D: true, ease: "performanceTransition" }, .1)
+      .to(veil, { ...clipPathState(diagonalWipe.end), duration: .52, force3D: true, ease: "performanceTransition" }, .02)
+      .to(yellowPanel, { ...clipPathState(diagonalWipe.end), duration: .52, force3D: true, ease: "performanceTransition" }, .1)
       .to(page, { opacity: 1, scale: 1, duration: .54, force3D: true, ease: "performanceTransition" }, .08);
   }, [finishTransition, pathname, resetPageScroll]);
 
