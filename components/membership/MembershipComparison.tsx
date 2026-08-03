@@ -38,7 +38,7 @@ export function MembershipComparison() {
             <span className={styles.eyebrow}><Sparkle size={15} weight="fill" aria-hidden="true" /> Scegli il tuo pass</span>
             <h2 id="membership-title">La performance giusta,<br />al livello giusto.</h2>
           </div>
-          <p>Parti gratis, sblocca tutto con Premium o porta il percorso ancora più avanti con Pro Pass.</p>
+          <p>Parti gratis, sblocca tutta la tecnica con Premium o porta la preparazione ancora più avanti con Pro Pass.</p>
         </div>
 
         <p className={styles.scrollHint}>Scorri per confrontare tutti i piani →</p>

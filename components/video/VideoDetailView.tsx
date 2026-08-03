@@ -28,7 +28,7 @@ export function VideoDetailView({ video }: { video: TrainingVideo }) {
       </article>
       <div className={styles.details}>
         <div>
-          <p>{video.eyebrow}</p><h1>{video.title}</h1><div className={styles.meta}><span><Clock size={16} />{video.duration} minuti</span><span>{video.level}</span><span>{video.sports.join(" · ")}</span></div>
+          <p>{video.eyebrow}</p><h1>{video.title}</h1><div className={styles.meta}><span><Clock size={16} />{video.duration} minuti</span><span>{video.level}</span><span>{video.disciplines.join(" · ")}</span></div>
           <p className={styles.description}>{video.description}</p>
           <div className={styles.tags}>{video.tags.map((tag) => <span key={tag}>#{tag}</span>)}</div>
         </div>

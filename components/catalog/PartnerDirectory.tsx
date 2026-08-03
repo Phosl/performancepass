@@ -30,9 +30,9 @@ export function PartnerDirectory() {
 
   return (
     <Reveal>
-      <section className={styles.partnerSection} aria-label="Directory dei partner affiliati">
+      <section id="partner-directory" className={styles.partnerSection} aria-label="Directory dei partner affiliati">
         <div className="shell">
-          <SectionHeading eyebrow={`${partnerStores.length} realtà selezionate`} title="Tutti i partner, un solo Pass." description="Negozi, studi e brand scelti per accompagnare ogni parte della tua performance." />
+          <SectionHeading eyebrow={`${partnerStores.length} realtà selezionate`} title="Tutti i partner, un solo Pass." description="Negozi, impianti e professionisti scelti intorno alla tua atletica." />
           <div className={styles.partnerToolbar}>
             <label className={styles.partnerSearch}>
               <span className="srOnly">Cerca un partner o una città</span>

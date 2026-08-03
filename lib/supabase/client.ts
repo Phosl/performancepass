@@ -2,7 +2,7 @@
  * Placeholder per la futura integrazione Supabase.
  *
  * Tabelle previste:
- * - profiles: user_id, name, sport, level, goal, frequency, membership (free | premium | pro)
+ * - profiles: user_id, name, discipline, level, goal, frequency, membership (free | premium | pro)
  * - videos: contenuti, metadati, access_level e tassonomie
  * - favorites: user_id, video_id, created_at
  * - courses / course_lessons: percorsi, ordine e accesso delle lezioni

@@ -204,7 +204,7 @@
 
 .note span:last-child { color: #627e08; font-weight: 740; text-align: right; }
 
-@media (max-width: 760px) {
+@media (max-width: 820px) {
   .section { padding-block: 4rem; }
   .heading { grid-template-columns: 1fr; gap: 1rem; margin-bottom: 1.4rem; }
   .heading h2 { font-size: clamp(2.7rem, 13vw, 4.3rem); }

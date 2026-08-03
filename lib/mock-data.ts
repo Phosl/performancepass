@@ -2,138 +2,138 @@ import type { Benefit, MiniCourse, PartnerStore, TrainingVideo } from "./types";
 
 export const videos: TrainingVideo[] = [
   {
-    id: "v1", slug: "potenza-nella-corsa", title: "Potenza nella corsa", eyebrow: "Running Lab", duration: 18,
-    level: "Intermedio", access: "premium", tags: ["tecnica", "esplosività"], sports: ["Corsa"], goals: ["Velocità", "Forza"],
-    image: "/images/generated/running-performance.webp", imageAlt: "Atleta durante una sessione di corsa ad alta intensità", accent: "orange",
-    description: "Una sessione breve e mirata per rendere la falcata più reattiva e trasferire forza a ogni appoggio."
+    id: "v1", slug: "primi-30-metri", title: "I primi 30 metri", eyebrow: "Sprint Lab", duration: 18,
+    level: "Intermedio", access: "premium", tags: ["blocchi", "accelerazione"], disciplines: ["Velocità", "Prove multiple"], goals: ["Velocità", "Tecnica"],
+    image: "/images/generated/athletics-sprint.webp", imageAlt: "Velocista in uscita dai blocchi su una pista di atletica", accent: "orange",
+    description: "Posizione, spinta e progressione per trasformare l’uscita dai blocchi in un’accelerazione efficace."
   },
   {
-    id: "v2", slug: "mobilita-pre-workout", title: "Mobilità pre-workout", eyebrow: "Daily Motion", duration: 12,
-    level: "Principiante", access: "free", tags: ["mobilità", "warm-up"], sports: ["Fitness", "Yoga", "Tennis"], goals: ["Mobilità", "Benessere"],
-    image: "/images/generated/mobility-performance.webp", imageAlt: "Atleta che esegue un esercizio di mobilità", accent: "violet",
-    description: "Dodici minuti per preparare anche, spalle e colonna prima di qualsiasi allenamento."
+    id: "v2", slug: "drills-postura-appoggio", title: "Drills: postura e appoggio", eyebrow: "Tecnica essenziale", duration: 12,
+    level: "Principiante", access: "free", tags: ["drills", "appoggio"], disciplines: ["Velocità", "Mezzofondo e fondo", "Ostacoli", "Prove multiple"], goals: ["Tecnica", "Velocità"],
+    image: "/images/generated/athletics-sprint.webp", imageAlt: "Atleta che esegue esercizi tecnici di corsa in pista", accent: "lime",
+    description: "Una sequenza semplice per allineare postura, appoggio e azione delle braccia prima della seduta."
   },
   {
-    id: "v3", slug: "core-per-atleti", title: "Core per atleti", eyebrow: "Strength Studio", duration: 24,
-    level: "Intermedio", access: "premium", tags: ["core", "stabilità"], sports: ["Fitness", "Corsa", "Ciclismo", "Tennis"], goals: ["Forza", "Resistenza"],
-    image: "/images/generated/strength-performance.webp", imageAlt: "Atleta in allenamento funzionale per il core", accent: "lime",
-    description: "Controllo, stabilità e forza trasferibile allo sport con una sequenza senza attrezzi."
+    id: "v3", slug: "ritmo-tra-ostacoli", title: "Ritmo tra gli ostacoli", eyebrow: "Hurdles Room", duration: 24,
+    level: "Intermedio", access: "premium", tags: ["ritmo", "barriere"], disciplines: ["Ostacoli", "Prove multiple"], goals: ["Tecnica", "Velocità"],
+    image: "/images/generated/athletics-hurdles.webp", imageAlt: "Ostacolista durante il passaggio di una barriera", accent: "violet",
+    description: "Attacco, richiamo e passi intermedi: costruisci un ritmo stabile senza forzare il gesto."
   },
   {
-    id: "v4", slug: "recupero-attivo", title: "Recupero attivo", eyebrow: "Reset Session", duration: 16,
-    level: "Principiante", access: "free", tags: ["recupero", "respiro"], sports: ["Yoga", "Fitness", "Corsa"], goals: ["Benessere", "Mobilità"],
-    image: "/images/generated/recovery-performance.webp", imageAlt: "Atleta in una posizione rilassata di recupero", accent: "sand",
-    description: "Movimenti a bassa intensità e respirazione per favorire il recupero tra due giornate di carico."
+    id: "v4", slug: "doppia-soglia", title: "Doppia soglia, senza confusione", eyebrow: "Endurance Lab", duration: 26,
+    level: "Avanzato", access: "premium", tags: ["soglia", "metodo"], disciplines: ["Mezzofondo e fondo"], goals: ["Resistenza", "Preparazione gara"],
+    image: "/images/generated/athletics-endurance.webp", imageAlt: "Mezzofondista durante una seduta di ritmo controllato", accent: "blue",
+    description: "Principi, intensità e recuperi per capire quando il lavoro di soglia sostiene davvero la prestazione."
   },
   {
-    id: "v5", slug: "salite-in-bici", title: "Salite più efficienti", eyebrow: "Cycling Academy", duration: 28,
-    level: "Avanzato", access: "premium", tags: ["soglia", "tecnica"], sports: ["Ciclismo"], goals: ["Resistenza", "Velocità"],
-    image: "/images/generated/cycling-performance.webp", imageAlt: "Ciclista impegnato in una salita", accent: "blue",
-    description: "Gestisci cadenza, posizione e intensità per affrontare le salite con meno dispersioni."
+    id: "v5", slug: "lungo-specifico", title: "Il lungo specifico", eyebrow: "Distance Session", duration: 32,
+    level: "Intermedio", access: "free", tags: ["fondo", "ritmo gara"], disciplines: ["Mezzofondo e fondo"], goals: ["Resistenza", "Preparazione gara"],
+    image: "/images/generated/athletics-endurance.webp", imageAlt: "Atleta di fondo in allenamento sulla pista", accent: "blue",
+    description: "Impara a distribuire ritmo e qualità nel lungo per arrivare alla gara con una base più solida."
   },
   {
-    id: "v6", slug: "forza-total-body", title: "Forza total body", eyebrow: "Strength Studio", duration: 32,
-    level: "Intermedio", access: "free", tags: ["forza", "total body"], sports: ["Fitness"], goals: ["Forza"],
-    image: "/images/generated/strength-performance.webp", imageAlt: "Atleta durante un allenamento total body", accent: "lime",
-    description: "Un circuito completo e progressivo per costruire forza con movimenti essenziali."
+    id: "v6", slug: "salto-in-lungo-rincorsa-stacco", title: "Rincorsa e stacco nel lungo", eyebrow: "Jump Studio", duration: 22,
+    level: "Intermedio", access: "premium", tags: ["rincorsa", "stacco"], disciplines: ["Salti", "Prove multiple"], goals: ["Tecnica", "Forza esplosiva"],
+    image: "/images/generated/athletics-jumps.webp", imageAlt: "Saltatore durante lo stacco nel salto in lungo", accent: "orange",
+    description: "Trova una rincorsa ripetibile e porta velocità sull’asse di stacco senza perdere controllo."
   },
   {
-    id: "v7", slug: "respirazione-nel-nuoto", title: "Respirazione nel nuoto", eyebrow: "Swim Focus", duration: 20,
-    level: "Principiante", access: "premium", tags: ["respirazione", "tecnica"], sports: ["Nuoto"], goals: ["Resistenza", "Benessere"],
-    image: "/images/generated/swimming-performance.webp", imageAlt: "Nuotatore durante una sessione tecnica in piscina", accent: "blue",
-    description: "Coordina bracciata e respiro per nuotare più a lungo con un assetto migliore."
+    id: "v7", slug: "salto-in-alto-curva", title: "Costruire la curva nell’alto", eyebrow: "Jump Studio", duration: 20,
+    level: "Principiante", access: "free", tags: ["curva", "elevazione"], disciplines: ["Salti", "Prove multiple"], goals: ["Tecnica", "Forza esplosiva"],
+    image: "/images/generated/athletics-jumps.webp", imageAlt: "Atleta durante una sessione tecnica dedicata ai salti", accent: "lime",
+    description: "Riferimenti pratici per impostare la curva, preparare lo stacco e arrivare alla pedana con fiducia."
   },
   {
-    id: "v8", slug: "footwork-tennis", title: "Footwork essenziale", eyebrow: "Court Skills", duration: 22,
-    level: "Intermedio", access: "premium", tags: ["agilità", "coordinazione"], sports: ["Tennis"], goals: ["Velocità", "Resistenza"],
-    image: "/images/generated/tennis-performance.webp", imageAlt: "Tennista che lavora sugli spostamenti in campo", accent: "orange",
-    description: "Schemi di movimento per arrivare meglio sulla palla e recuperare rapidamente la posizione."
+    id: "v8", slug: "getto-peso-catena-spinta", title: "La catena di spinta nel peso", eyebrow: "Throws Lab", duration: 24,
+    level: "Intermedio", access: "premium", tags: ["peso", "spinta"], disciplines: ["Lanci", "Prove multiple"], goals: ["Tecnica", "Forza esplosiva"],
+    image: "/images/generated/athletics-throws.webp", imageAlt: "Lanciatore nella pedana del getto del peso", accent: "sand",
+    description: "Dai piedi alla mano: coordina le spinte e trasferisci forza all’attrezzo senza spezzare il gesto."
   },
   {
-    id: "v9", slug: "yoga-per-sportivi", title: "Yoga per sportivi", eyebrow: "Flow Room", duration: 30,
-    level: "Principiante", access: "free", tags: ["yoga", "flessibilità"], sports: ["Yoga", "Corsa", "Ciclismo"], goals: ["Mobilità", "Benessere"],
-    image: "/images/generated/mobility-performance.webp", imageAlt: "Atleta in una sequenza yoga per la mobilità", accent: "violet",
-    description: "Una pratica fluida per liberare le catene muscolari più sollecitate nello sport."
+    id: "v9", slug: "giavellotto-rincorsa-blocco", title: "Rincorsa e blocco nel giavellotto", eyebrow: "Throws Lab", duration: 28,
+    level: "Avanzato", access: "premium", tags: ["giavellotto", "blocco"], disciplines: ["Lanci", "Prove multiple"], goals: ["Tecnica", "Forza esplosiva"],
+    image: "/images/generated/athletics-throws.webp", imageAlt: "Atleta che prepara un lancio del giavellotto in pista", accent: "orange",
+    description: "Sequenza, passi incrociati e blocco finale per trasformare la velocità della rincorsa in lancio."
   },
   {
-    id: "v10", slug: "interval-training", title: "Interval training", eyebrow: "Performance Lab", duration: 26,
-    level: "Avanzato", access: "premium", tags: ["hiit", "cardio"], sports: ["Fitness", "Corsa"], goals: ["Resistenza", "Velocità"],
-    image: "/images/generated/running-performance.webp", imageAlt: "Atleta durante ripetute ad alta intensità", accent: "orange",
-    description: "Blocchi ad alta intensità studiati per spingere il motore aerobico senza perdere qualità."
+    id: "v10", slug: "marcia-bacino-contatto-ritmo", title: "Bacino, contatto, ritmo", eyebrow: "Race Walk Focus", duration: 19,
+    level: "Principiante", access: "free", tags: ["marcia", "contatto"], disciplines: ["Marcia"], goals: ["Tecnica", "Resistenza"],
+    image: "/images/generated/athletics-endurance.webp", imageAlt: "Atleta impegnato in una sessione tecnica di marcia", accent: "violet",
+    description: "Tre riferimenti essenziali per rendere il passo fluido, economico e coerente con la tecnica di marcia."
   },
   {
-    id: "v11", slug: "stretching-serale", title: "Stretching serale", eyebrow: "Daily Motion", duration: 14,
-    level: "Principiante", access: "free", tags: ["stretching", "relax"], sports: ["Yoga", "Fitness"], goals: ["Mobilità", "Benessere"],
-    image: "/images/generated/recovery-performance.webp", imageAlt: "Atleta che esegue stretching in un ambiente tranquillo", accent: "sand",
-    description: "Una routine calma per ridurre la tensione e chiudere la giornata con più leggerezza."
+    id: "v11", slug: "girata-forza-esplosiva", title: "La girata per la forza esplosiva", eyebrow: "Performance Lab", duration: 30,
+    level: "Avanzato", access: "premium", tags: ["girata", "potenza"], disciplines: ["Velocità", "Ostacoli", "Salti", "Lanci", "Prove multiple"], goals: ["Forza esplosiva", "Preparazione gara"],
+    image: "/images/generated/athletics-strength.webp", imageAlt: "Atleta che esegue una girata tecnica con il bilanciere", accent: "lime",
+    description: "Impugnatura, accelerazione e ricezione: le fasi chiave per usare la girata nella preparazione atletica."
   },
   {
-    id: "v12", slug: "endurance-ride", title: "Endurance ride", eyebrow: "Cycling Academy", duration: 45,
-    level: "Intermedio", access: "premium", tags: ["zona 2", "endurance"], sports: ["Ciclismo"], goals: ["Resistenza"],
-    image: "/images/generated/cycling-performance.webp", imageAlt: "Ciclista durante un allenamento di resistenza", accent: "blue",
-    description: "Costruisci una base aerobica solida con una sessione guidata a intensità controllata."
+    id: "v12", slug: "visualizzare-la-gara", title: "Visualizzare la gara", eyebrow: "Mental Performance", duration: 14,
+    level: "Principiante", access: "free", tags: ["focus", "routine"], disciplines: ["Velocità", "Mezzofondo e fondo", "Ostacoli", "Salti", "Lanci", "Marcia", "Prove multiple"], goals: ["Preparazione gara", "Tecnica"],
+    image: "/images/generated/athletics-sprint.webp", imageAlt: "Atleta concentrato prima di una sessione sulla pista", accent: "violet",
+    description: "Una routine guidata per anticipare gesti, sensazioni e imprevisti prima di entrare in gara."
   }
 ];
 
 export const courses: MiniCourse[] = [
   {
-    id: "c1", title: "Correre forte, correre bene", subtitle: "Tecnica, ritmo e recupero in un percorso pratico.", category: "RUNNING", level: "Intermedio",
-    image: "/images/generated/running-performance.webp", imageAlt: "Runner su una pista durante un allenamento tecnico",
+    id: "c1", title: "Dai blocchi al traguardo", subtitle: "Accelerazione, transizione e mantenimento della velocità.", category: "VELOCITÀ", level: "Intermedio",
+    image: "/images/generated/athletics-sprint.webp", imageAlt: "Velocista in allenamento sulla pista",
     lessons: [
-      { title: "Il tuo passo efficiente", duration: 8, free: true },
-      { title: "Respirazione e ritmo", duration: 11, free: true },
-      { title: "Costruire la velocità", duration: 14, free: false },
-      { title: "Recuperare per migliorare", duration: 10, free: false }
+      { title: "La posizione sui blocchi", duration: 8, free: true },
+      { title: "I primi sei appoggi", duration: 11, free: true },
+      { title: "Entrare nella fase lanciata", duration: 14, free: false },
+      { title: "Mantenere senza irrigidirsi", duration: 10, free: false }
     ]
   },
   {
-    id: "c2", title: "Fondamenta di forza", subtitle: "I pattern essenziali per ogni atleta.", category: "STRENGTH", level: "Principiante",
-    image: "/images/generated/strength-performance.webp", imageAlt: "Atleta che allena la forza con esercizi funzionali",
+    id: "c2", title: "Saltare più lontano", subtitle: "Costruisci una rincorsa precisa e uno stacco efficace.", category: "SALTI", level: "Principiante",
+    image: "/images/generated/athletics-jumps.webp", imageAlt: "Atleta durante il salto in lungo",
     lessons: [
-      { title: "Controllo e postura", duration: 9, free: true },
-      { title: "Spinta e trazione", duration: 12, free: true },
-      { title: "Forza unilaterale", duration: 15, free: false },
-      { title: "Il tuo primo programma", duration: 13, free: false }
+      { title: "Misurare la rincorsa", duration: 9, free: true },
+      { title: "Postura negli ultimi appoggi", duration: 12, free: true },
+      { title: "Stacco e azione libera", duration: 15, free: false },
+      { title: "Volo e atterraggio", duration: 13, free: false }
     ]
   },
   {
-    id: "c3", title: "Recovery intelligente", subtitle: "Trasforma il riposo in parte dell’allenamento.", category: "RECOVERY", level: "Principiante",
-    image: "/images/generated/recovery-performance.webp", imageAlt: "Atleta durante una sessione guidata di recupero",
+    id: "c3", title: "Forza esplosiva per l’atletica", subtitle: "Dalla sala pesi alla pista, senza perdere specificità.", category: "PERFORMANCE", level: "Intermedio",
+    image: "/images/generated/athletics-strength.webp", imageAlt: "Atleta in una sessione di forza esplosiva",
     lessons: [
-      { title: "Leggere i segnali", duration: 7, free: true },
-      { title: "Mobilità quotidiana", duration: 10, free: true },
-      { title: "Sonno e performance", duration: 12, free: false },
-      { title: "Pianificare il recupero", duration: 9, free: false }
+      { title: "Forza e velocità: il rapporto", duration: 7, free: true },
+      { title: "Atterraggi e stiffness", duration: 10, free: true },
+      { title: "La girata tecnica", duration: 12, free: false },
+      { title: "Trasferire il lavoro in pista", duration: 9, free: false }
     ]
   }
 ];
 
 export const benefits: Benefit[] = [
-  { id: "b1", partner: "NOVA FUEL", category: "NUTRIZIONE", title: "-20% sul primo ordine", description: "Nutrizione sportiva essenziale, formulata per allenamento e recupero.", value: "20%", code: "PASS20", accent: "lime" },
-  { id: "b2", partner: "PACE LAB", category: "RUNNING", title: "Analisi della corsa inclusa", description: "Valutazione tecnica in store con report personalizzato.", value: "FREE", code: "RUNPASS", accent: "orange" },
-  { id: "b3", partner: "NORTH CLUB", category: "TRAINING", title: "Un mese a metà prezzo", description: "Accedi a classi, recovery room e sessioni open gym.", value: "-50%", code: "NORTH50", accent: "blue" },
-  { id: "b4", partner: "FORM", category: "EQUIPMENT", title: "Kit mobility riservato", description: "Una selezione compatta per mobilità e recupero quotidiano.", value: "-15%", code: "FORM15", accent: "violet" },
-  { id: "b5", partner: "ALTURA", category: "OUTDOOR", title: "Spedizione express gratuita", description: "Abbigliamento tecnico progettato per muoversi in ogni condizione.", value: "0€", code: "FASTPASS", accent: "orange" },
-  { id: "b6", partner: "FLOW WATER", category: "HYDRATION", title: "Bundle atleta esclusivo", description: "Idratazione e sali minerali in un formato riservato ai membri.", value: "+25%", code: "FLOW25", accent: "blue" }
+  { id: "b1", partner: "SPIKE ROOM", category: "ATTREZZATURA", title: "-20% sulle prime chiodate", description: "Consulenza e scelta della scarpa in base a specialità, appoggio e livello.", value: "20%", code: "SPIKE20", accent: "lime" },
+  { id: "b2", partner: "PACE LAB", category: "ANALISI", title: "Test tecnico incluso", description: "Analisi video di corsa, appoggi e accelerazione con report personalizzato.", value: "FREE", code: "PACETEST", accent: "orange" },
+  { id: "b3", partner: "TRACK CLUB", category: "IMPIANTI", title: "Tre ingressi in pista", description: "Accesso open track in fasce dedicate per completare le tue sessioni.", value: "3X", code: "TRACK3", accent: "blue" },
+  { id: "b4", partner: "RECOVERY LANE", category: "RECOVERY", title: "Screening funzionale -25%", description: "Valutazione per mobilità, carico e prevenzione degli infortuni.", value: "-25%", code: "LANE25", accent: "violet" },
+  { id: "b5", partner: "NOVA FUEL", category: "NUTRIZIONE", title: "Bundle gara riservato", description: "Idratazione e nutrizione pratica per riscaldamento, gara e recupero.", value: "+20%", code: "RACE20", accent: "orange" },
+  { id: "b6", partner: "RACE ENTRY", category: "GARE", title: "Fee di servizio azzerata", description: "Iscrizione agevolata a meeting, gare su strada e cross selezionati.", value: "0€", code: "PASSON", accent: "blue" }
 ];
 
 export const partnerStores: PartnerStore[] = [
-  { id: "p1", name: "NOVA FUEL", category: "Nutrizione", description: "Nutrizione sportiva essenziale per allenamento, gara e recupero.", availability: "Online", location: "Italia", memberBenefit: "Fino al 20%", accent: "lime" },
-  { id: "p2", name: "PACE LAB", category: "Servizi", description: "Analisi della corsa, fitting e consulenza tecnica per runner.", availability: "In store", location: "Milano", memberBenefit: "Analisi inclusa", accent: "orange" },
-  { id: "p3", name: "NORTH CLUB", category: "Training", description: "Training club con classi, open gym e spazi dedicati al recovery.", availability: "In store", location: "Milano · Torino", memberBenefit: "Primo mese -50%", accent: "blue" },
-  { id: "p4", name: "FORM", category: "Attrezzatura", description: "Accessori compatti per mobilità, forza e allenamento quotidiano.", availability: "Online + In store", location: "Italia", memberBenefit: "Sconto 15%", accent: "violet" },
-  { id: "p5", name: "ALTURA", category: "Outdoor", description: "Abbigliamento tecnico progettato per muoversi in ogni condizione.", availability: "Online", location: "Europa", memberBenefit: "Express gratuita", accent: "orange" },
-  { id: "p6", name: "FLOW WATER", category: "Nutrizione", description: "Idratazione funzionale e sali minerali per sportivi.", availability: "Online", location: "Italia", memberBenefit: "Bundle +25%", accent: "blue" },
-  { id: "p7", name: "KINEO STUDIO", category: "Recovery", description: "Fisioterapia sportiva, valutazioni funzionali e recupero attivo.", availability: "In store", location: "Roma", memberBenefit: "Prima visita -20%", accent: "sand" },
-  { id: "p8", name: "RIDE ROOM", category: "Training", description: "Indoor cycling, test di soglia e programmi per ogni livello.", availability: "In store", location: "Bologna", memberBenefit: "2 classi incluse", accent: "blue" },
-  { id: "p9", name: "TERRAIN", category: "Outdoor", description: "Calzature e attrezzatura per trail, hiking e avventure veloci.", availability: "Online + In store", location: "Trento · Online", memberBenefit: "Sconto 12%", accent: "lime" },
-  { id: "p10", name: "SOMA LAB", category: "Recovery", description: "Massaggio sportivo, crioterapia e protocolli di recupero.", availability: "In store", location: "Milano", memberBenefit: "Recovery -15%", accent: "violet" },
-  { id: "p11", name: "CADENCE", category: "Attrezzatura", description: "Accessori e componenti selezionati per ciclismo strada e gravel.", availability: "Online + In store", location: "Verona · Online", memberBenefit: "Bike fit -20%", accent: "blue" },
-  { id: "p12", name: "BASE CAMP", category: "Training", description: "Programmazione atletica e sessioni small group ad alta qualità.", availability: "In store", location: "Firenze", memberBenefit: "Trial gratuito", accent: "orange" },
-  { id: "p13", name: "PURE FORM", category: "Nutrizione", description: "Snack proteici e ingredienti semplici per una routine sostenibile.", availability: "Online", location: "Italia", memberBenefit: "Sconto 15%", accent: "sand" },
-  { id: "p14", name: "MATCH POINT", category: "Attrezzatura", description: "Racchette, corde e consulenza specializzata per sport di campo.", availability: "In store", location: "Roma · Napoli", memberBenefit: "Incordatura inclusa", accent: "lime" },
-  { id: "p15", name: "MOTION CLINIC", category: "Servizi", description: "Valutazione biomeccanica e prevenzione degli infortuni.", availability: "In store", location: "Torino", memberBenefit: "Screening -25%", accent: "violet" },
-  { id: "p16", name: "EVERYDAY ATHLETE", category: "Attrezzatura", description: "Essenziali premium per allenarsi bene dentro e fuori dalla palestra.", availability: "Online", location: "Europa", memberBenefit: "Sconto 10%", accent: "sand" }
+  { id: "p1", name: "SPIKE ROOM", category: "Attrezzatura", description: "Chiodate e calzature tecniche selezionate per ogni specialità.", availability: "Online + In store", location: "Milano · Online", memberBenefit: "Fino al 20%", accent: "lime" },
+  { id: "p2", name: "PACE LAB", category: "Servizi", description: "Analisi video di corsa, partenza e appoggio con report tecnico.", availability: "In store", location: "Milano", memberBenefit: "Test incluso", accent: "orange" },
+  { id: "p3", name: "TRACK CLUB", category: "Training", description: "Pista, pedane e sessioni open track in fasce dedicate.", availability: "In store", location: "Roma · Torino", memberBenefit: "3 ingressi", accent: "blue" },
+  { id: "p4", name: "STARTLINE", category: "Training", description: "Preparazione per velocità e ostacoli in piccoli gruppi.", availability: "In store", location: "Bologna", memberBenefit: "Trial gratuito", accent: "violet" },
+  { id: "p5", name: "NOVA FUEL", category: "Nutrizione", description: "Nutrizione essenziale per sedute, gare e recupero.", availability: "Online", location: "Italia", memberBenefit: "Bundle +20%", accent: "orange" },
+  { id: "p6", name: "PHOTO FINISH", category: "Servizi", description: "Cronometraggio, split e videoanalisi per test e meeting.", availability: "In store", location: "Italia", memberBenefit: "Prima sessione -20%", accent: "blue" },
+  { id: "p7", name: "JUMP WORKS", category: "Attrezzatura", description: "Accessori per rincorse, pedane e allenamento dei salti.", availability: "Online", location: "Europa", memberBenefit: "Sconto 15%", accent: "lime" },
+  { id: "p8", name: "THROW HOUSE", category: "Attrezzatura", description: "Attrezzi certificati e kit tecnici per tutte le categorie.", availability: "Online + In store", location: "Firenze · Online", memberBenefit: "Noleggio -15%", accent: "sand" },
+  { id: "p9", name: "RECOVERY LANE", category: "Recovery", description: "Valutazioni funzionali e recupero per chi si allena in pista.", availability: "In store", location: "Roma", memberBenefit: "Screening -25%", accent: "violet" },
+  { id: "p10", name: "KINEO STUDIO", category: "Recovery", description: "Fisioterapia sportiva e rientro progressivo all’allenamento.", availability: "In store", location: "Torino", memberBenefit: "Prima visita -20%", accent: "sand" },
+  { id: "p11", name: "FLOW WATER", category: "Nutrizione", description: "Idratazione e sali minerali per allenamento e gara.", availability: "Online", location: "Italia", memberBenefit: "Bundle +25%", accent: "blue" },
+  { id: "p12", name: "FIELD NOTES", category: "Servizi", description: "Programmazione digitale e diario tecnico per atleti e coach.", availability: "Online", location: "Italia", memberBenefit: "2 mesi inclusi", accent: "orange" },
+  { id: "p13", name: "RACE ENTRY", category: "Servizi", description: "Iscrizioni semplificate a meeting, cross e gare su strada.", availability: "Online", location: "Italia", memberBenefit: "Fee azzerata", accent: "lime" },
+  { id: "p14", name: "CORE BLOCK", category: "Training", description: "Forza e preparazione atletica con progressioni dedicate.", availability: "In store", location: "Milano · Verona", memberBenefit: "Valutazione inclusa", accent: "violet" },
+  { id: "p15", name: "ALTURA", category: "Outdoor", description: "Abbigliamento tecnico per pista, cross e corsa su strada.", availability: "Online + In store", location: "Trento · Online", memberBenefit: "Sconto 12%", accent: "orange" },
+  { id: "p16", name: "EVERYDAY ATHLETE", category: "Attrezzatura", description: "Borse, accessori e strumenti essenziali per il campo.", availability: "Online", location: "Europa", memberBenefit: "Sconto 10%", accent: "sand" }
 ];
 
 export const findVideoBySlug = (slug: string) => videos.find((video) => video.slug === slug);

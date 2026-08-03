@@ -27,7 +27,7 @@ export const membershipPlans: readonly MembershipPlan[] = [
     cadence: "per sempre",
     description: "Il modo più semplice per scoprire il tuo percorso.",
     cta: "Inizia gratis",
-    highlights: ["Selezione personalizzata", "Video e lezioni gratuite", "Anteprima vantaggi"],
+    highlights: ["Selezione per specialità", "Video e lezioni gratuite", "Anteprima vantaggi"],
   },
   {
     id: "premium",
@@ -47,7 +47,7 @@ export const membershipPlans: readonly MembershipPlan[] = [
     cadence: "al mese",
     description: "Più profondità, priorità e vantaggi per fare sul serio.",
     cta: "Attiva Pro Pass",
-    highlights: ["Tutto Premium", "Percorsi avanzati", "Vantaggi esclusivi Pro"],
+    highlights: ["Tutto Premium", "Pro Pass fisica", "Vantaggi esclusivi Pro"],
   },
 ] as const;
 
@@ -57,7 +57,7 @@ export const membershipPlanById = Object.fromEntries(
 
 export const membershipFeatures: readonly MembershipFeature[] = [
   {
-    label: "Video training",
+    label: "Tecnica e training",
     plans: { free: "Selezione Free", premium: "Catalogo completo", pro: "Catalogo + sessioni Pro" },
   },
   {
@@ -65,7 +65,7 @@ export const membershipFeatures: readonly MembershipFeature[] = [
     plans: { free: "Prime 2 lezioni", premium: "Tutti i percorsi", pro: "Percorsi avanzati" },
   },
   {
-    label: "Scelti per te",
+    label: "Scelti per specialità",
     plans: { free: true, premium: true, pro: "Priorità Pro" },
   },
   {
@@ -73,11 +73,15 @@ export const membershipFeatures: readonly MembershipFeature[] = [
     plans: { free: "Anteprima", premium: "Tutti i vantaggi", pro: "Vantaggi esclusivi" },
   },
   {
-    label: "Profili sportivi",
-    plans: { free: "1 sport", premium: "1 sport", pro: "Fino a 3 sport" },
+    label: "Profilo atletico",
+    plans: { free: "1 specialità", premium: "Percorso personalizzato", pro: "Priorità Pro" },
   },
   {
     label: "Piano performance",
     plans: { free: false, premium: "Mensile", pro: "Settimanale" },
+  },
+  {
+    label: "Card fisica",
+    plans: { free: false, premium: "Standard", pro: "Pro Edition" },
   },
 ] as const;

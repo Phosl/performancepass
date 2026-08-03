@@ -2,19 +2,7 @@
 
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
 import type { AthleteProfile } from "@/lib/types";
-
-const STORAGE_KEY = "performance-pass-profile-v1";
-
-const defaultProfile: AthleteProfile = {
-  name: "Atleta",
-  sport: "Corsa",
-  level: "Intermedio",
-  goal: "Resistenza",
-  frequency: "3–4 volte",
-  membership: "free",
-  favorites: ["v2"],
-  onboardingComplete: false,
-};
+import { defaultProfile, readAthleteProfile, writeAthleteProfile } from "@/lib/profile-storage";
 
 interface AthleteContextValue {
   profile: AthleteProfile;
@@ -27,32 +15,22 @@ interface AthleteContextValue {
 
 const AthleteContext = createContext<AthleteContextValue | null>(null);
 
-function isStoredProfile(value: unknown): value is Partial<AthleteProfile> {
-  return typeof value === "object" && value !== null && !Array.isArray(value);
-}
-
 export function AthleteProvider({ children }: { children: React.ReactNode }) {
   const [profile, setProfile] = useState<AthleteProfile>(defaultProfile);
   const [hydrated, setHydrated] = useState(false);
 
   useEffect(() => {
     try {
-      const stored = window.localStorage.getItem(STORAGE_KEY);
-      if (stored) {
-        const parsed: unknown = JSON.parse(stored);
-        if (isStoredProfile(parsed)) {
-          setProfile({ ...defaultProfile, ...parsed });
-        }
-      }
+      setProfile(readAthleteProfile(window.localStorage));
     } catch {
-      window.localStorage.removeItem(STORAGE_KEY);
+      setProfile(defaultProfile);
     } finally {
       setHydrated(true);
     }
   }, []);
 
   useEffect(() => {
-    if (hydrated) window.localStorage.setItem(STORAGE_KEY, JSON.stringify(profile));
+    if (hydrated) writeAthleteProfile(window.localStorage, profile);
   }, [hydrated, profile]);
 
   const updateProfile = useCallback((updates: Partial<AthleteProfile>) => {

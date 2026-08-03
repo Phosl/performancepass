@@ -47,7 +47,7 @@
   .videoGrid > :first-child { grid-column: 1 / -1; }
 }
 
-@media (max-width: 700px) {
+@media (max-width: 820px) {
   .introBrand { flex-direction: column; align-items: center; gap: .15rem; }
   .hero { padding: 2rem 0 2.5rem; }
   .heroGrid { min-height: auto; grid-template-columns: 1fr; }

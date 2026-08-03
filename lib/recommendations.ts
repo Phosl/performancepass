@@ -6,7 +6,7 @@ export function getRecommendedVideos(profile: AthleteProfile, limit = 6): Traini
     .map((video) => ({
       video,
       score:
-        (video.sports.includes(profile.sport) ? 4 : 0) +
+        (video.disciplines.includes(profile.discipline) ? 4 : 0) +
         (video.goals.includes(profile.goal) ? 3 : 0) +
         (video.level === profile.level ? 2 : 0) +
         (profile.favorites.includes(video.id) ? 1 : 0),

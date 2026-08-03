@@ -12,8 +12,8 @@ const manrope = Manrope({ subsets: ["latin"], variable: "--font-display", displa
 export const metadata: Metadata = {
   metadataBase: new URL("https://performancepass.demo"),
   title: { default: "Performance Pass", template: "%s | Performance Pass" },
-  description: "Video, mini-corsi e vantaggi selezionati in base al tuo profilo sportivo.",
-  openGraph: { title: "Performance Pass", description: "Il tuo percorso sportivo, personale.", type: "website", locale: "it_IT" },
+  description: "Video, mini-corsi e vantaggi personalizzati per ogni specialità dell’atletica leggera.",
+  openGraph: { title: "Performance Pass", description: "Il tuo percorso nell’atletica, personale.", type: "website", locale: "it_IT" },
 };
 
 export const viewport: Viewport = { themeColor: "#f7f7f3", colorScheme: "light" };

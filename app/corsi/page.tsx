@@ -3,13 +3,13 @@ import { CoursesCatalog } from "@/components/catalog/CoursesCatalog";
 
 export const metadata: Metadata = {
   title: "Mini-corsi",
-  description: "Mini-corsi Performance Pass per costruire tecnica, forza e recupero con lezioni brevi e progressive.",
+  description: "Mini-corsi di atletica leggera per costruire tecnica, velocità e forza esplosiva con lezioni progressive.",
 };
 
 export default function CoursesPage() {
   return (
     <>
-      <header className="shell pageTop"><h1>Impara. Applica.<br />Migliora.</h1><p>Tre percorsi essenziali per capire cosa fare, perché funziona e come portarlo nel tuo allenamento.</p></header>
+      <header className="shell pageTop"><h1>Impara il gesto.<br />Portalo in pista.</h1><p>Tre percorsi essenziali per capire cosa fare, perché funziona e come trasferirlo nella tua specialità.</p></header>
       <CoursesCatalog />
     </>
   );

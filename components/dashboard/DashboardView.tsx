@@ -31,10 +31,10 @@ export function DashboardView() {
           <div className={styles.welcomeTop}>
             <div>
               <p>IL TUO PERFORMANCE PASS</p>
-              <h1>Ciao, {profile.name}.<br /><span>Pronto a muoverti?</span></h1>
+              <h1>Ciao, {profile.name}.<br /><span>Pronto per la pista?</span></h1>
             </div>
             <div className={styles.profileSummary}>
-              <span>{profile.sport}</span><i />
+              <span>{profile.discipline}</span><i />
               <span>{profile.level}</span><i />
               <span>{profile.goal}</span>
               <TransitionLink href="/profilo">Modifica profilo</TransitionLink>
@@ -66,7 +66,7 @@ export function DashboardView() {
               </div>
               <div className={styles.metricCards}>
                 <div><CalendarBlank size={20} aria-hidden="true" /><strong>3</strong><span>sessioni<br />questa settimana</span></div>
-                <div><Target size={20} aria-hidden="true" /><strong>82</strong><span>minuti<br />in movimento</span></div>
+                <div><Target size={20} aria-hidden="true" /><strong>82</strong><span>minuti<br />di lavoro</span></div>
               </div>
             </aside>
           </div>
@@ -76,7 +76,7 @@ export function DashboardView() {
       <Reveal>
         <section className="section">
           <div className="shell">
-            <SectionHeading eyebrow={`In base a ${profile.sport} e ${profile.goal}`} title="Continua il tuo percorso" href="/video" />
+            <SectionHeading eyebrow={`In base a ${profile.discipline} e ${profile.goal}`} title="Continua il tuo percorso" href="/video" />
             <div className={styles.videoGrid}>{recommended.slice(1).map((video) => <VideoCard key={video.id} video={video} />)}</div>
           </div>
         </section>
@@ -87,7 +87,7 @@ export function DashboardView() {
           <div className={`shell ${styles.courseLayout}`}>
             <div className={styles.courseCopy}>
               <p>IL TUO MINI-CORSO</p>
-              <h2>Un passo alla volta, con una direzione chiara.</h2>
+              <h2>Un gesto alla volta, con una direzione chiara.</h2>
               <span>Riprendi da dove hai lasciato. Le prime due lezioni sono incluse nel tuo pass Free.</span>
               <TransitionLink href="/corsi">Esplora i corsi <ArrowRight size={17} weight="bold" /></TransitionLink>
             </div>

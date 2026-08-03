@@ -1,9 +1,9 @@
-export const sports = ["Corsa", "Ciclismo", "Fitness", "Nuoto", "Tennis", "Yoga"] as const;
+export const disciplines = ["Velocità", "Mezzofondo e fondo", "Ostacoli", "Salti", "Lanci", "Marcia", "Prove multiple"] as const;
 export const levels = ["Principiante", "Intermedio", "Avanzato"] as const;
-export const goals = ["Resistenza", "Forza", "Velocità", "Mobilità", "Benessere"] as const;
+export const goals = ["Tecnica", "Velocità", "Resistenza", "Forza esplosiva", "Preparazione gara"] as const;
 export const frequencies = ["1–2 volte", "3–4 volte", "5+ volte"] as const;
 
-export type Sport = (typeof sports)[number];
+export type Discipline = (typeof disciplines)[number];
 export type AthleteLevel = (typeof levels)[number];
 export type Goal = (typeof goals)[number];
 export type Frequency = (typeof frequencies)[number];
@@ -12,7 +12,7 @@ export type ContentAccess = Exclude<Membership, "pro">;
 
 export interface AthleteProfile {
   name: string;
-  sport: Sport;
+  discipline: Discipline;
   level: AthleteLevel;
   goal: Goal;
   frequency: Frequency;
@@ -30,7 +30,7 @@ export interface TrainingVideo {
   level: AthleteLevel;
   access: ContentAccess;
   tags: string[];
-  sports: Sport[];
+  disciplines: Discipline[];
   goals: Goal[];
   image: string;
   imageAlt: string;

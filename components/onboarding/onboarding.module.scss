@@ -31,9 +31,9 @@
   .copy h1 { font-size: 3rem; }
   .copy > span { font-size: .9rem; }
   .options { grid-template-columns: 1fr 1fr; margin-top: 1.7rem; }
-  .options:not(.sportOptions) { grid-template-columns: 1fr; }
+  .options:not(.disciplineOptions) { grid-template-columns: 1fr; }
   .options button { min-height: 92px; }
-  .options:not(.sportOptions) button { min-height: 66px; flex-direction: row; align-items: center; }
+  .options:not(.disciplineOptions) button { min-height: 66px; flex-direction: row; align-items: center; }
   .summary { display: none; }
   .actions { margin-top: 1.6rem; }
 }

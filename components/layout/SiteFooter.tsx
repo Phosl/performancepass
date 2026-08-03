@@ -83,7 +83,7 @@ export function SiteFooter() {
             <TransitionLink href="/" className={styles.logo} aria-label="Performance Pass, home">
               <span>P</span><strong>Performance<i>Pass</i></strong>
             </TransitionLink>
-            <p>Video, mini-corsi e vantaggi selezionati intorno al tuo profilo sportivo.</p>
+            <p>Video, mini-corsi e vantaggi selezionati intorno alla tua specialità atletica.</p>
             <a href="mailto:hello@performancepass.it">hello@performancepass.it</a>
           </div>
           <nav className={styles.linkColumns} aria-label="Navigazione nel footer">
@@ -99,7 +99,7 @@ export function SiteFooter() {
         <div className={styles.wordmark} aria-hidden="true"><span>Performance</span><strong>Pass</strong></div>
         <div className={styles.footerBottom}>
           <span>© {new Date().getFullYear()} Performance Pass</span>
-          <span>Progettato per ogni atleta.</span>
+          <span>Progettato per chi vive l’atletica.</span>
           <a href="mailto:partner@performancepass.it">Diventa partner <ArrowUpRight size={14} aria-hidden="true" /></a>
         </div>
       </div>
