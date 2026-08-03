@@ -1,0 +1,48 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: rgba(247, 247, 243, 0.82);
+  border-bottom: 1px solid rgba(25, 25, 23, 0.08);
+  backdrop-filter: blur(20px) saturate(150%);
+}
+
+.inner { height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 2rem; }
+.logo { display: flex; align-items: center; gap: .7rem; font-weight: 820; letter-spacing: -.045em; }
+.logo > span:last-child > span { color: #678e00; margin-left: .16rem; }
+.logoMark { width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center; background: var(--ink); color: var(--lime); font-size: 1rem; }
+.desktopNav { display: flex; align-items: center; gap: 2rem; color: var(--muted); font-size: .87rem; font-weight: 680; }
+.desktopNav a { padding: .75rem .1rem; transition: color 160ms ease; }
+.desktopNav a:hover, .desktopNav .active { color: var(--ink); }
+.desktopNav .active { position: relative; }
+.desktopNav .active::after { content: ""; position: absolute; left: 50%; bottom: .25rem; width: 4px; height: 4px; border-radius: 50%; background: #7ca400; }
+.profileLink { display: flex; align-items: center; gap: .65rem; }
+.avatar { width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center; background: var(--orange); font-size: .8rem; font-weight: 850; }
+.profileText { display: grid; font-size: .78rem; font-weight: 740; line-height: 1.15; }
+.profileText small { color: var(--muted); font-size: .65rem; font-weight: 550; }
+.mobileNav { display: none; }
+
+@media (max-width: 760px) {
+  .header { position: relative; }
+  .inner { height: 62px; }
+  .desktopNav, .profileText { display: none; }
+  .profileLink { margin-left: auto; }
+  .mobileNav {
+    position: fixed;
+    z-index: 50;
+    left: .75rem;
+    right: .75rem;
+    bottom: max(.75rem, env(safe-area-inset-bottom));
+    height: 62px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    align-items: center;
+    border: 1px solid rgba(255,255,255,.18);
+    border-radius: 19px;
+    background: rgba(25,25,23,.92);
+    box-shadow: 0 20px 45px rgba(0,0,0,.22);
+    backdrop-filter: blur(20px);
+  }
+  .mobileNav a { display: grid; place-items: center; gap: .22rem; color: #aaa9a2; font-size: .61rem; font-weight: 680; }
+  .mobileNav .activeMobile { color: var(--lime); }
+}

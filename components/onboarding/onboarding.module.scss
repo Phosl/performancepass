@@ -1,0 +1,39 @@
+.onboarding { position: relative; min-height: calc(100vh - 72px); display: grid; grid-template-rows: auto 1fr; background: #f1f1eb; }
+.topbar { width: min(920px, calc(100% - 3rem)); margin: 0 auto; padding-top: 2.3rem; }
+.stepLabel { display: flex; justify-content: space-between; color: var(--muted); font-size: .72rem; font-weight: 720; text-transform: uppercase; letter-spacing: .1em; }
+.progress { height: 4px; margin-top: .8rem; overflow: hidden; border-radius: 999px; background: #ddddD5; }
+.progress span { display: block; height: 100%; border-radius: inherit; background: var(--ink); transition: width .35s ease; }
+.content { width: min(920px, calc(100% - 3rem)); margin: auto; padding: 3rem 0 5.5rem; }
+.copy { max-width: 680px; }
+.copy > p { color: #6f9200; font-size: .7rem; font-weight: 820; letter-spacing: .12em; }
+.copy h1 { margin-top: .75rem; font-family: var(--font-display), sans-serif; font-size: clamp(2.7rem, 6vw, 5.5rem); line-height: .95; letter-spacing: -.075em; }
+.copy > span { display: block; max-width: 520px; margin-top: 1rem; color: var(--muted); line-height: 1.55; }
+.options { display: grid; grid-template-columns: repeat(3, 1fr); gap: .8rem; margin-top: 2.4rem; }
+.options button { min-height: 112px; position: relative; display: flex; flex-direction: column; align-items: flex-start; justify-content: space-between; padding: 1.1rem; border: 1px solid var(--line); border-radius: 18px; background: rgba(255,255,255,.6); text-align: left; cursor: pointer; font-weight: 720; transition: transform 160ms ease, background 160ms ease, border-color 160ms ease; }
+.options button:hover { transform: translateY(-2px); border-color: rgba(25,25,23,.26); }
+.options button:focus-visible { outline: 3px solid rgba(113,149,0,.3); outline-offset: 3px; }
+.options button i { position: absolute; top: 1rem; right: 1rem; width: 18px; height: 18px; border: 1px solid #aaa; border-radius: 50%; }
+.options .selected { background: var(--ink); color: white; border-color: var(--ink); }
+.options .selected i { border: 5px solid var(--lime); }
+.actions { display: flex; justify-content: space-between; align-items: center; margin-top: 2.4rem; }
+.actions button { min-height: 48px; display: inline-flex; align-items: center; gap: .55rem; border: 0; cursor: pointer; font-weight: 750; }
+.back { background: transparent; }
+.continue { padding: .8rem 1.25rem; border-radius: 999px; background: var(--lime); }
+.summary { position: absolute; right: 2rem; top: 50%; display: grid; gap: .55rem; transform: translateY(-50%); }
+.summary span { width: 7px; height: 7px; overflow: hidden; border-radius: 50%; background: #cfcec7; color: transparent; }
+.summary .summaryActive { background: var(--ink); }
+
+@media (max-width: 760px) {
+  .onboarding { min-height: calc(100svh - 62px); }
+  .topbar, .content { width: min(100% - 1.5rem, 920px); }
+  .topbar { padding-top: 1.4rem; }
+  .content { padding: 2.5rem 0 5rem; margin-block: 0; }
+  .copy h1 { font-size: 3rem; }
+  .copy > span { font-size: .9rem; }
+  .options { grid-template-columns: 1fr 1fr; margin-top: 1.7rem; }
+  .options:not(.sportOptions) { grid-template-columns: 1fr; }
+  .options button { min-height: 92px; }
+  .options:not(.sportOptions) button { min-height: 66px; flex-direction: row; align-items: center; }
+  .summary { display: none; }
+  .actions { margin-top: 1.6rem; }
+}

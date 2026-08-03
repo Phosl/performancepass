@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 720" role="img" aria-labelledby="title desc">
+  <title id="title">Allenamento di tennis</title><desc id="desc">Tennista astratto in movimento su un campo arancione.</desc>
+  <defs><linearGradient id="g" x1="0" y1="1" x2="1" y2="0"><stop stop-color="#ff8754"/><stop offset="1" stop-color="#ffd06e"/></linearGradient></defs>
+  <rect width="960" height="720" rx="36" fill="url(#g)"/><path d="M0 535 960 289v431H0Z" fill="#e4623d" opacity=".43"/><path d="M0 536h960M470 411v309" stroke="#ffe6a7" stroke-width="9" opacity=".7"/>
+  <g fill="none" stroke="#171714" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="492" cy="209" r="45" fill="#171714"/>
+    <path d="m451 272-55 170 180 8-42-178h-83Z" fill="#f7f7f1" stroke-width="23"/>
+    <path d="m419 306-105 102-93-23M553 301l87 67 73-54M440 441l-112 129-100 28M555 447l111 117 98 18" stroke-width="31"/>
+    <ellipse cx="767" cy="234" rx="56" ry="86" transform="rotate(29 767 234)" stroke-width="18"/><path d="m732 308-49 79" stroke-width="18"/>
+  </g>
+  <text x="58" y="92" font-family="Arial,sans-serif" font-size="26" font-weight="700" letter-spacing="5" fill="#171714">COURT / 07</text>
+</svg>

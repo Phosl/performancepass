@@ -1,0 +1,32 @@
+.filters { display: flex; align-items: center; gap: 1rem; padding: 1rem 0 1.25rem; border-bottom: 1px solid var(--line); }
+.filterLabel { display: flex; align-items: center; gap: .4rem; color: var(--muted); font-size: .75rem; font-weight: 720; }
+.chips { flex: 1; display: flex; gap: .45rem; overflow-x: auto; scrollbar-width: none; }
+.chips::-webkit-scrollbar { display: none; }
+.chips button { min-height: 34px; padding: .45rem .8rem; border: 1px solid var(--line); border-radius: 999px; background: transparent; white-space: nowrap; cursor: pointer; color: var(--muted); font-size: .72rem; font-weight: 680; }
+.chips button[aria-pressed="true"] { background: var(--ink); color: white; border-color: var(--ink); }
+.filters select { min-height: 38px; padding: .45rem 2rem .45rem .75rem; border: 1px solid var(--line); border-radius: 10px; background: white; color: var(--ink); font-size: .72rem; }
+.resultCount { margin: 1.4rem 0 1rem; color: var(--muted); font-size: .72rem; }
+.videoGrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.4rem 1.2rem; padding-bottom: 5rem; }
+.empty { min-height: 300px; display: grid; place-content: center; text-align: center; }.empty p { margin-top: .5rem; color: var(--muted); }
+.courseGrid { display: grid; gap: 1.25rem; padding: 1rem 0 5rem; }
+.courseGrid > article:nth-child(even) { grid-template-columns: 1.1fr .9fr; }
+.courseGrid > article:nth-child(even) > div:first-child { order: 2; }
+.benefitGrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; padding-bottom: 5rem; }
+.memberBanner { display: flex; align-items: center; gap: 1rem; margin: .7rem 0 2.2rem; padding: 1.2rem; border-radius: 20px; background: var(--ink); color: white; }
+.memberBanner > span { width: 46px; height: 46px; display: grid; place-items: center; border-radius: 14px; background: var(--lime); color: var(--ink); }
+.memberBanner > div { display: grid; gap: .12rem; margin-right: auto; }
+.memberBanner small { color: #92928d; font-size: .6rem; font-weight: 800; letter-spacing: .1em; }
+.memberBanner strong { font-size: 1rem; }.memberBanner p { color: #aaa; font-size: .74rem; }
+.benefitIntro { display: flex; align-items: center; gap: .45rem; margin-bottom: 1rem; color: var(--muted); font-size: .74rem; }
+.benefitIntro svg { color: #769c00; }
+
+@media (max-width: 900px) {
+  .videoGrid, .benefitGrid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 650px) {
+  .filters { align-items: flex-start; flex-wrap: wrap; }
+  .filterLabel { width: 100%; }.chips { order: 3; flex-basis: 100%; }.filters select { margin-left: auto; }
+  .videoGrid, .benefitGrid { grid-template-columns: 1fr; }
+  .courseGrid > article:nth-child(even) { grid-template-columns: 1fr; }.courseGrid > article:nth-child(even) > div:first-child { order: 0; }
+  .memberBanner { align-items: flex-start; flex-wrap: wrap; }.memberBanner > div { width: calc(100% - 65px); }.memberBanner a { width: 100%; }
+}

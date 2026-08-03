@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 720" role="img" aria-labelledby="title desc">
+  <title id="title">Recupero attivo</title><desc id="desc">Figura astratta in rilassamento su fondo sabbia.</desc>
+  <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f3eadc"/><stop offset="1" stop-color="#d5c4aa"/></linearGradient></defs>
+  <rect width="960" height="720" rx="36" fill="url(#g)"/><path d="M0 470c194-87 321-53 471 27 157 84 298 90 489 13v210H0Z" fill="#c6b291" opacity=".5"/>
+  <g fill="none" stroke="#171714" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="495" cy="203" r="46" fill="#171714"/>
+    <path d="m453 270-42 183h168l-38-183h-88Z" fill="#f7f7f1" stroke-width="23"/>
+    <path d="m444 297-116 93-111-3M551 297l106 92 107-12M443 446l-128 92-112 10M557 445l115 90 111 13" stroke-width="31"/>
+  </g>
+  <text x="58" y="92" font-family="Arial,sans-serif" font-size="26" font-weight="700" letter-spacing="5" fill="#171714">RESET / 10</text>
+</svg>

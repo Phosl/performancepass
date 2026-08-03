@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 720" role="img" aria-labelledby="title desc">
+  <title id="title">Allenamento di forza</title><desc id="desc">Figura astratta durante un esercizio di forza su fondo verde lime.</desc>
+  <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#dfff6c"/><stop offset="1" stop-color="#9fda24"/></linearGradient></defs>
+  <rect width="960" height="720" rx="36" fill="url(#g)"/><path d="M617 0H960v720H739C657 524 638 288 617 0Z" fill="#83bd19" opacity=".5"/>
+  <g fill="none" stroke="#171714" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="496" cy="196" r="49" fill="#171714"/>
+    <path d="M445 273h111l58 202H377l68-202Z" fill="#f7f7f1" stroke-width="25"/>
+    <path d="m421 303-104 129-127-72M564 306l92 136 135-50M427 469l-69 145M565 469l79 145" stroke-width="35"/>
+    <path d="M148 318v88m-45-66v44m733-70v100m45-74v49" stroke-width="24"/>
+  </g>
+  <text x="58" y="92" font-family="Arial,sans-serif" font-size="26" font-weight="700" letter-spacing="5" fill="#171714">POWER / 02</text>
+</svg>

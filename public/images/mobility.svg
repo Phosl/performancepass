@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 720" role="img" aria-labelledby="title desc">
+  <title id="title">Sessione di mobilità</title><desc id="desc">Figura astratta in una posizione di mobilità su fondo viola.</desc>
+  <defs><linearGradient id="g" x1="0" y1="1" x2="1" y2="0"><stop stop-color="#a990f4"/><stop offset="1" stop-color="#e2dbff"/></linearGradient></defs>
+  <rect width="960" height="720" rx="36" fill="url(#g)"/><circle cx="175" cy="590" r="260" fill="#d7ccff" opacity=".45"/>
+  <g fill="none" stroke="#171714" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="505" cy="198" r="45" fill="#171714"/>
+    <path d="m469 267-67 185 176-6-32-179h-77Z" fill="#f7f7f1" stroke-width="24"/>
+    <path d="m445 295-133 61-93-45M557 296l97 85 109-53M444 442 295 569h-98M555 443l151 103 87-15" stroke-width="31"/>
+  </g>
+  <text x="58" y="92" font-family="Arial,sans-serif" font-size="26" font-weight="700" letter-spacing="5" fill="#171714">MOVE / 08</text>
+</svg>

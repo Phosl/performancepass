@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 720" role="img" aria-labelledby="title desc">
+  <title id="title">Allenamento di corsa</title><desc id="desc">Figura astratta di un runner in movimento su fondo arancio.</desc>
+  <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#ffb45f"/><stop offset="1" stop-color="#ff6842"/></linearGradient></defs>
+  <rect width="960" height="720" rx="36" fill="url(#g)"/><circle cx="760" cy="116" r="210" fill="#ffcc78" opacity=".45"/>
+  <path d="M0 578C169 486 342 535 517 480c140-43 258-137 443-163v403H0Z" fill="#e85435" opacity=".56"/>
+  <g fill="none" stroke="#171714" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="497" cy="208" r="46" fill="#171714" stroke-width="4"/>
+    <path d="m468 268-86 116 132 36 71-113-117-39Z" fill="#f7f7f1" stroke-width="24"/>
+    <path d="m394 318-111 82-91-14M507 414l-113 83-140 82M530 403l92 89 127 12" stroke-width="32"/>
+  </g>
+  <text x="58" y="92" font-family="Arial,sans-serif" font-size="26" font-weight="700" letter-spacing="5" fill="#171714">PACE / 04</text>
+</svg>
