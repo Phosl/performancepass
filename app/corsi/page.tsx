@@ -1,10 +1,12 @@
-import type { Metadata } from "next";
 import { CoursesCatalog } from "@/components/catalog/CoursesCatalog";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Mini-corsi",
+export const metadata = createPageMetadata({
+  title: "Mini-corsi di atletica leggera",
   description: "Mini-corsi di atletica leggera per costruire tecnica, velocità e forza esplosiva con lezioni progressive.",
-};
+  path: "/corsi",
+  keywords: ["corsi atletica", "corso velocità", "tecnica salto in lungo", "forza esplosiva atletica"],
+});
 
 export default function CoursesPage() {
   return (

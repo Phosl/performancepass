@@ -1,7 +1,7 @@
-import type { Metadata } from "next";
 import { LegalPage } from "@/components/legal/LegalPage";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = { title: "Privacy", description: "Informativa privacy della demo Performance Pass." };
+export const metadata = createPageMetadata({ title: "Privacy", description: "Informativa privacy della demo Performance Pass e dettagli sui dati salvati localmente.", path: "/privacy", index: false });
 
 const sections = [
   { title: "Una demo che resta sul tuo dispositivo", content: "Questa versione di Performance Pass non crea account reali e non invia il tuo profilo a un server. Specialità, livello, obiettivo, frequenza, membership demo e preferiti vengono salvati esclusivamente nel LocalStorage del browser." },

@@ -1,7 +1,7 @@
-import type { Metadata } from "next";
 import { LegalPage } from "@/components/legal/LegalPage";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = { title: "Termini della demo", description: "Condizioni d’uso della demo Performance Pass." };
+export const metadata = createPageMetadata({ title: "Termini della demo", description: "Condizioni d’uso, natura dimostrativa e limiti dei contenuti Performance Pass.", path: "/termini", index: false });
 
 const sections = [
   { title: "Natura dimostrativa", content: "Performance Pass è attualmente una demo frontend. Account, membership, progressi, corsi e operazioni mostrate nell’interfaccia sono simulati e non costituiscono un servizio commerciale attivo." },

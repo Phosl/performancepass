@@ -1,10 +1,12 @@
-import type { Metadata } from "next";
 import { VideoCatalog } from "@/components/catalog/VideoCatalog";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Video training",
+export const metadata = createPageMetadata({
+  title: "Video di atletica leggera",
   description: "Video tecnici per velocità, mezzofondo, ostacoli, salti, lanci, marcia e prove multiple.",
-};
+  path: "/video",
+  keywords: ["video atletica", "tecnica di corsa", "allenamento velocità", "allenamento salti", "allenamento lanci"],
+});
 
 export default function VideoPage() {
   return (

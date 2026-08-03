@@ -1,10 +1,12 @@
-import type { Metadata } from "next";
 import { BenefitsCatalog } from "@/components/catalog/BenefitsCatalog";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Vantaggi per i membri",
+export const metadata = createPageMetadata({
+  title: "Vantaggi e partner per atleti",
   description: "Scopri partner e vantaggi Performance Pass per chiodate, pista, preparazione, gare e recovery.",
-};
+  path: "/vantaggi",
+  keywords: ["sconti atleti", "negozi atletica", "scarpe chiodate", "partner sportivi", "recovery atleti"],
+});
 
 export default function BenefitsPage() {
   return (
