@@ -2,7 +2,7 @@
 .page { position: relative; z-index: 1; min-height: calc(100vh - 72px); }
 :global(html.is-page-transitioning) .page { will-change: transform, opacity; }
 
-.yellowPanel,
+.accentPanel,
 .veil {
   position: fixed;
   inset: -4px;
@@ -14,8 +14,10 @@
   will-change: clip-path;
 }
 
-.yellowPanel {
-  z-index: 999;
+.accentPanel {
+  z-index: 1001;
+  clip-path: polygon(-115% 100%, -109% 100%, -59% 150%, -65% 150%);
+  -webkit-clip-path: polygon(-115% 100%, -109% 100%, -59% 150%, -65% 150%);
   background: var(--lime);
 }
 
@@ -25,24 +27,25 @@
   padding: clamp(1rem, 2.2vw, 2rem);
   overflow: hidden;
   background:
-    radial-gradient(circle at 8% 92%, rgba(200, 255, 69, .16), transparent 25%),
-    linear-gradient(112deg, rgba(255, 255, 255, .045), transparent 42%),
-    var(--ink);
+    radial-gradient(circle at 8% 92%, rgba(200, 255, 69, .08), transparent 24%),
+    linear-gradient(112deg, rgba(255, 255, 255, .025), transparent 42%),
+    rgba(20, 20, 18, .91);
   color: var(--paper);
+  -webkit-backdrop-filter: blur(5px) saturate(.8);
+  backdrop-filter: blur(5px) saturate(.8);
 }
 
 .route {
   position: relative;
   z-index: 1;
   display: block;
-  max-width: min(11ch, 90vw);
+  max-width: min(18ch, 88vw);
   text-align: center;
   font-family: var(--font-display), sans-serif;
-  font-size: clamp(3.3rem, 10vw, 10rem);
-  font-weight: 800;
-  line-height: .79;
-  letter-spacing: -.075em;
-  text-transform: uppercase;
+  font-size: clamp(1.8rem, 4.6vw, 4.6rem);
+  font-weight: 720;
+  line-height: .95;
+  letter-spacing: -.055em;
   overflow-wrap: anywhere;
   transform-origin: center;
 }
@@ -50,9 +53,9 @@
 @media (max-width: 760px) {
   .page { min-height: calc(100svh - 62px); }
   .veil { padding: 1rem; }
-  .route { max-width: 9ch; font-size: clamp(3.1rem, 17vw, 6rem); }
+  .route { max-width: 15ch; font-size: clamp(1.75rem, 9vw, 3.2rem); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .page, .yellowPanel, .veil { transform: none !important; transition: none !important; }
+  .page, .accentPanel, .veil { transform: none !important; transition: none !important; }
 }
