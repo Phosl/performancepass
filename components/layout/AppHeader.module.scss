@@ -2,8 +2,8 @@
   position: sticky;
   top: 0;
   z-index: 40;
-  background: rgba(247, 247, 243, .86);
-  border-bottom: 1px solid rgba(25, 25, 23, .08);
+  background: rgba(7, 9, 13, .94);
+  border-bottom: 1px solid rgba(255, 255, 255, .1);
   backdrop-filter: blur(20px) saturate(150%);
 }
 
@@ -31,7 +31,7 @@
   display: flex;
   align-items: center;
   gap: clamp(.85rem, 1.65vw, 1.7rem);
-  color: var(--muted);
+  color: #a9b0bf;
   font-size: .79rem;
   font-weight: 690;
 }
@@ -57,7 +57,7 @@
 }
 
 .desktopNav > a:hover,
-.desktopNav .active { color: var(--ink); }
+.desktopNav .active { color: #fff; }
 
 .desktopNav .active::after {
   opacity: 1;
@@ -71,10 +71,10 @@
   align-items: center;
   justify-content: center;
   padding: .68rem 1rem;
-  border: 1px solid var(--ink);
+  border: 1px solid #286bff;
   border-radius: 999px;
-  background: var(--ink);
-  color: var(--paper);
+  background: #1355ee;
+  color: #fff;
   font-size: .74rem;
   font-weight: 790;
   transition: color 160ms ease, background 160ms ease, transform 160ms ease;
@@ -83,8 +83,8 @@
 .joinAction:hover,
 .mobileJoin:hover,
 .joinActive {
-  background: var(--accent);
-  color: var(--ink);
+  background: #286bff;
+  color: #fff;
   transform: translateY(-1px);
 }
 
@@ -135,7 +135,7 @@
     padding: .35rem;
     border: 1px solid rgba(255, 255, 255, .17);
     border-radius: 20px;
-    background: rgba(20, 20, 18, .94);
+    background: rgba(7, 9, 13, .96);
     box-shadow: 0 20px 45px rgba(0, 0, 0, .24);
     backdrop-filter: blur(20px);
   }
@@ -148,7 +148,7 @@
     gap: .2rem;
     padding: .15rem;
     border-radius: 14px;
-    color: #aaa9a2;
+    color: #a9b0bf;
     font-size: clamp(.5rem, 1.7vw, .6rem);
     font-weight: 700;
     line-height: 1;
@@ -157,8 +157,8 @@
   }
 
   .mobileNav .activeMobile {
-    background: rgba(117, 217, 255, .1);
-    color: var(--accent);
+    background: rgba(40, 107, 255, .17);
+    color: #93b8ff;
   }
 }
 

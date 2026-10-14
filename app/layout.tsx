@@ -1,5 +1,4 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Manrope } from "next/font/google";
 import { AppProviders } from "@/components/providers/AppProviders";
 import { AppHeader } from "@/components/layout/AppHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
@@ -8,8 +7,6 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { absoluteUrl, siteConfig } from "@/lib/seo";
 import "./globals.scss";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-body", display: "swap" });
-const manrope = Manrope({ subsets: ["latin"], variable: "--font-display", display: "swap" });
 const siteTitle = "Performance Pass | La membership di Atletica TV";
 const siteDescription = "Performance Pass è la membership di Atletica TV con vantaggi dedicati, contenuti riservati e formazione per chi vive l’atletica.";
 const socialImageAlt = "Atleta in pista per Performance Pass, la membership di Atletica TV";
@@ -51,7 +48,7 @@ export const metadata: Metadata = {
   verification: process.env.GOOGLE_SITE_VERIFICATION ? { google: process.env.GOOGLE_SITE_VERIFICATION } : undefined,
 };
 
-export const viewport: Viewport = { themeColor: "#f7f7f3", colorScheme: "light" };
+export const viewport: Viewport = { themeColor: "#07090d", colorScheme: "light" };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   const structuredData = [
@@ -82,7 +79,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
 
   return (
     <html lang="it">
-      <body className={`${inter.variable} ${manrope.variable}`}>
+      <body>
         <JsonLd data={structuredData} />
         <AppProviders>
           <PageTransitionProvider persistent={<AppHeader />}>

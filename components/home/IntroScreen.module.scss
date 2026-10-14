@@ -6,7 +6,7 @@
   place-content: center;
   justify-items: center;
   padding: 1.5rem;
-  background: var(--ink);
+  background: #07090d;
   color: white;
 }
 
@@ -17,7 +17,7 @@
 }
 
 .lockup {
-  --brand-lockup-ink: var(--paper);
+  --brand-lockup-ink: #fff;
   --brand-lockup-accent: var(--accent);
   --brand-lockup-size: clamp(1.55rem, 5vw, 4.5rem);
   --brand-lockup-logo-width: clamp(6.2rem, 16vw, 13.5rem);

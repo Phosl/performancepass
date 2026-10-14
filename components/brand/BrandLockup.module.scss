@@ -3,24 +3,32 @@
   display: inline-flex;
   align-items: center;
   gap: .58em;
-  color: var(--brand-lockup-ink, var(--ink));
+  padding: .3em;
+  border-radius: .25em;
+  background: #07090d;
+  color: var(--brand-lockup-ink, #fff);
   font-size: var(--brand-lockup-size, 1rem);
   line-height: 1;
 }
 
 .productName {
-  display: inline-flex;
-  align-items: baseline;
+  position: relative;
+  display: block;
   flex: 0 0 auto;
-  font-family: var(--font-display), sans-serif;
-  font-weight: 820;
-  letter-spacing: -.055em;
+  width: 11em;
+  aspect-ratio: 710 / 160;
+  overflow: hidden;
+  mix-blend-mode: lighten;
 }
 
-.productName strong {
-  margin-left: .14em;
-  color: var(--brand-lockup-accent, var(--accent-strong));
-  font-weight: inherit;
+.productName img {
+  // Preserve the supplied wordmark by showing its exact area of the original card.
+  position: absolute;
+  left: -13.380282%;
+  top: -80%;
+  width: 222.253521%;
+  height: auto;
+  max-width: none;
 }
 
 .divider {
@@ -41,9 +49,7 @@
 .network small {
   color: currentColor;
   font-size: .52em;
-  font-weight: 760;
-  letter-spacing: .08em;
-  text-transform: uppercase;
+  font-weight: 500;
   opacity: .68;
 }
 
@@ -52,9 +58,6 @@
   flex: 0 0 auto;
   display: grid;
   place-items: center;
-  padding: .2em .3em;
-  border-radius: .28em;
-  background: #020203;
 }
 
 .networkMark img {

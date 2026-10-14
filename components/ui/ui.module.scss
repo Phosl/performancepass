@@ -32,8 +32,8 @@
   text-transform: uppercase;
 }
 
-.preview { background: rgba(255,255,255,.9); color: var(--ink); }
-.member { background: var(--ink); color: var(--accent); }
+.preview { background: rgba(255,255,255,.9); color: #191917; }
+.member { background: #191917; color: #75d9ff; }
 .neutral { background: var(--soft); color: var(--muted); }
 .accent { background: var(--lime); color: var(--ink); }
 
@@ -59,7 +59,7 @@
   border: 0;
   border-radius: 50%;
   background: rgba(255,255,255,.86);
-  color: var(--ink);
+  color: #191917;
   backdrop-filter: blur(12px);
   cursor: pointer;
   transition: transform 160ms ease, color 160ms ease;

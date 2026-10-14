@@ -11,8 +11,13 @@ export function BrandLockup({ className }: BrandLockupProps) {
   return (
     <span className={rootClassName} role="img" aria-label="Performance Pass by Atletica TV">
       <span className={styles.productName} aria-hidden="true">
-        <span>Performance</span>
-        <strong>Pass</strong>
+        <Image
+          src="/brand/performance-pass-demo.jpg"
+          alt=""
+          width={1578}
+          height={997}
+          unoptimized
+        />
       </span>
       <span className={styles.divider} aria-hidden="true" />
       <span className={styles.network} aria-hidden="true">

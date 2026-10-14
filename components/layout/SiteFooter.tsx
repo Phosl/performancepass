@@ -1,4 +1,4 @@
-import { ArrowRight, ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
+import { ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
 import { BrandLockup } from "@/components/brand/BrandLockup";
 import { TransitionLink } from "@/components/transitions/TransitionLink";
 import styles from "./SiteFooter.module.scss";
@@ -34,25 +34,13 @@ export function SiteFooter() {
       <div className="shell">
         <section className={styles.footerHero} aria-labelledby="footer-hero-title">
           <div className={styles.heroCopy}>
-            <p className={styles.eyebrow}>PERFORMANCE PASS · BY ATLETICA TV</p>
-            <h2 id="footer-hero-title">L’atletica, dentro<br /><span>e fuori la pista.</span></h2>
-            <p className={styles.heroLead}>La membership di Atletica TV che riunisce vantaggi dedicati, contenuti riservati e formazione.</p>
-            <div className={styles.heroActions}>
-              <TransitionLink href="/iscriviti" className={styles.primaryAction}>
-                Entra nel club <ArrowUpRight size={19} weight="bold" aria-hidden="true" />
-              </TransitionLink>
-              <TransitionLink href="/contenuti" className={styles.secondaryAction}>
-                Scopri i contenuti <ArrowRight size={17} weight="bold" aria-hidden="true" />
-              </TransitionLink>
-            </div>
+            <p className={styles.eyebrow}>LA TUA COMMUNITY, IL TUO PASS</p>
+            <h2 id="footer-hero-title">Performance in pista,<br /><span>vantaggi fuori.</span></h2>
+            <p className={styles.heroLead}>Formazione riservata e vantaggi dedicati. Entra nel mondo di Atletica TV.</p>
           </div>
-
-          <div className={styles.heroPass} aria-hidden="true">
-            <div className={styles.heroPassTop}><span>MEMBERSHIP DEMO</span><span>ACCESSO LOCALE</span></div>
-            <BrandLockup className={styles.heroLockup} />
-            <strong>PASS</strong>
-            <div className={styles.heroPassBottom}><span>CONTENUTI</span><span>FORMAZIONE</span><span>VANTAGGI</span></div>
-          </div>
+          <TransitionLink href="/iscriviti" className={styles.primaryAction}>
+            Diventa member <ArrowUpRight size={19} weight="bold" aria-hidden="true" />
+          </TransitionLink>
         </section>
 
         <div className={styles.footerMiddle}>
@@ -60,7 +48,7 @@ export function SiteFooter() {
             <TransitionLink href="/" className={styles.logo} aria-label="Performance Pass by Atletica TV, home">
               <BrandLockup className={styles.footerLockup} />
             </TransitionLink>
-            <p>Un unico accesso all’universo Atletica TV, tra contenuti, formazione e opportunità dedicate alla community.</p>
+            <p>La membership di Atletica TV. Contenuti formativi riservati e vantaggi per chi vive l’atletica.</p>
             <div className={styles.brandStatus}><i /><span>Esperienza dimostrativa locale</span></div>
           </div>
 
@@ -74,20 +62,22 @@ export function SiteFooter() {
           </nav>
 
           <aside className={styles.endorsement} aria-labelledby="atletica-tv-title">
-            <p className={styles.endorsementLabel}>BY ATLETICA TV</p>
+            <p className={styles.endorsementLabel}>IL NOSTRO MONDO</p>
             <h3 id="atletica-tv-title">L’atletica ha già una casa.</h3>
             <p>Performance Pass nasce dentro l’esperienza editoriale e formativa di Atletica TV.</p>
-            <a href="https://atletica.tv/">
+            <a href="https://www.atletica.tv/">
               Visita Atletica TV <ArrowUpRight size={16} weight="bold" aria-hidden="true" />
+            </a>
+            <a href="https://talent.atletica.tv/">
+              Scopri Talent <ArrowUpRight size={16} weight="bold" aria-hidden="true" />
             </a>
           </aside>
         </div>
 
-        <div className={styles.wordmark} aria-hidden="true"><span>Performance</span><strong>Pass</strong></div>
         <div className={styles.footerBottom}>
           <span>© {new Date().getFullYear()} Performance Pass</span>
           <span>Demo locale: nessun account o pagamento reale.</span>
-          <a href="https://atletica.tv/">Atletica TV <ArrowUpRight size={14} aria-hidden="true" /></a>
+          <a href="https://www.atletica.tv/">Atletica TV <ArrowUpRight size={14} aria-hidden="true" /></a>
         </div>
       </div>
     </footer>

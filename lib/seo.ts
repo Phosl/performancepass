@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-const fallbackSiteUrl = "https://performancepass.it";
+const fallbackSiteUrl = "https://performancepass.vercel.app";
 
 function resolveSiteUrl() {
   try {
