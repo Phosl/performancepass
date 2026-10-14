@@ -12,7 +12,7 @@
   transition: transform 180ms ease, background-color 180ms ease, color 180ms ease;
 
   &:hover { transform: translateY(-2px); }
-  &:focus-visible { outline: 3px solid rgba(187, 255, 46, 0.35); outline-offset: 3px; }
+  &:focus-visible { outline: 3px solid rgba(117, 217, 255, 0.42); outline-offset: 3px; }
 }
 
 .primary { background: var(--ink); color: var(--paper); }
@@ -32,8 +32,8 @@
   text-transform: uppercase;
 }
 
-.free { background: rgba(255,255,255,.9); color: var(--ink); }
-.premium { background: var(--ink); color: var(--lime); }
+.preview { background: rgba(255,255,255,.9); color: var(--ink); }
+.member { background: var(--ink); color: var(--accent); }
 .neutral { background: var(--soft); color: var(--muted); }
 .accent { background: var(--lime); color: var(--ink); }
 
@@ -65,7 +65,7 @@
   transition: transform 160ms ease, color 160ms ease;
 
   &:hover { transform: scale(1.08); }
-  &:focus-visible { outline: 3px solid var(--lime); outline-offset: 2px; }
+  &:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
 }
 .favoriteActive { color: #ff5d57; }
 

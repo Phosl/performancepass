@@ -1,29 +1,34 @@
 "use client";
 
 import Image from "next/image";
-import { ArrowLeft, Clock, LockSimple, Play, ShareNetwork } from "@phosphor-icons/react";
+import { ArrowLeft, CheckCircle, Clock, Eye, Info, LockSimple } from "@phosphor-icons/react";
 import type { TrainingVideo } from "@/lib/types";
-import { useAthlete } from "@/context/AthleteContext";
+import { useMember } from "@/context/MemberContext";
+import { canAccessContent } from "@/lib/content-access";
 import { Badge } from "@/components/ui/Badge";
+import { ButtonLink } from "@/components/ui/ButtonLink";
 import { FavoriteButton } from "@/components/ui/FavoriteButton";
 import { TransitionLink } from "@/components/transitions/TransitionLink";
 import styles from "./videoDetail.module.scss";
 
 export function VideoDetailView({ video }: { video: TrainingVideo }) {
-  const { profile } = useAthlete();
-  const locked = video.access === "premium" && profile.membership === "free";
+  const { profile } = useMember();
+  const accessible = canAccessContent(video.access, profile.status);
+  const memberContent = video.access === "member";
 
   return (
     <div className={`shell ${styles.page}`}>
       <TransitionLink href="/video" className={styles.back}><ArrowLeft size={17} weight="bold" /> Tutti i video</TransitionLink>
       <article className={styles.player}>
         <Image src={video.image} alt={video.imageAlt} fill priority sizes="(max-width: 800px) 94vw, 1180px" />
-        <div className={styles.playerTop}><Badge tone={video.access}>{video.access === "premium" ? "Premium" : "Free"}</Badge><FavoriteButton videoId={video.id} /></div>
-        <div className={styles.playControl}>
-          <button type="button" aria-label={locked ? "Contenuto Premium bloccato" : `Riproduci ${video.title}`}>
-            {locked ? <LockSimple size={28} weight="fill" /> : <Play size={28} weight="fill" />}
-          </button>
-          <span>{locked ? "Passa a Premium o Pro per iniziare" : "Premi play per iniziare"}</span>
+        <div className={styles.playerTop}><Badge tone={video.access}>{memberContent ? "Membri" : "Anteprima"}</Badge><FavoriteButton videoId={video.id} /></div>
+        <div className={styles.availabilityPanel}>
+          <span className={styles.availabilityIcon} aria-hidden="true">
+            {!accessible ? <LockSimple size={25} weight="fill" /> : memberContent ? <CheckCircle size={25} weight="fill" /> : <Eye size={25} weight="fill" />}
+          </span>
+          <strong>{!accessible ? "Contenuto riservato ai membri" : memberContent ? "Dettagli per membri disponibili" : "Anteprima disponibile"}</strong>
+          <p>{accessible ? "Il video completo non è incluso in questa demo." : "Attiva il Pass demo per vedere i dettagli riservati."}</p>
+          {!accessible && <ButtonLink href="/iscriviti" variant="secondary">Entra nel club</ButtonLink>}
         </div>
       </article>
       <div className={styles.details}>
@@ -33,7 +38,7 @@ export function VideoDetailView({ video }: { video: TrainingVideo }) {
           <div className={styles.tags}>{video.tags.map((tag) => <span key={tag}>#{tag}</span>)}</div>
         </div>
         <aside>
-          <ShareNetwork size={20} /><div><strong>Condividi la sessione</strong><span>Allenarsi insieme rende tutto più semplice.</span></div>
+          <Info size={20} /><div><strong>Esperienza dimostrativa</strong><span>Nessun video viene riprodotto e nessuna attività viene registrata.</span></div>
         </aside>
       </div>
     </div>

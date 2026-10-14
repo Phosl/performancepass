@@ -31,7 +31,7 @@ export function VideoCard({ video, featured = false }: { video: TrainingVideo; f
         <Image ref={imageRef} src={video.image} alt={video.imageAlt} fill sizes={featured ? "(max-width: 760px) 90vw, 55vw" : "(max-width: 640px) 90vw, (max-width: 1000px) 45vw, 30vw"} />
         <TransitionLink href={`/video/${video.slug}`} className={styles.mediaLink} aria-label={`Apri il video ${video.title}`} />
         <div className={styles.mediaTop}>
-          <Badge tone={video.access}>{video.access === "premium" ? "Premium" : "Free"}</Badge>
+          <Badge tone={video.access}>{video.access === "member" ? "Membri" : "Anteprima"}</Badge>
           <FavoriteButton videoId={video.id} />
         </div>
         <span className={styles.play}><Play size={17} weight="fill" aria-hidden="true" /></span>

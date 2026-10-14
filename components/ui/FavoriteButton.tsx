@@ -1,11 +1,11 @@
 "use client";
 
 import { Heart } from "@phosphor-icons/react";
-import { useAthlete } from "@/context/AthleteContext";
+import { useMember } from "@/context/MemberContext";
 import styles from "./ui.module.scss";
 
 export function FavoriteButton({ videoId }: { videoId: string }) {
-  const { isFavorite, toggleFavorite } = useAthlete();
+  const { isFavorite, toggleFavorite } = useMember();
   const active = isFavorite(videoId);
 
   return (

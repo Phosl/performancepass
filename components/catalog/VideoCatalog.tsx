@@ -22,7 +22,7 @@ export function VideoCatalog() {
           {["Tutte", ...disciplines].map((item) => <button key={item} type="button" onClick={() => setDiscipline(item as "Tutte" | Discipline)} aria-pressed={discipline === item}>{item}</button>)}
         </div>
         <select value={access} onChange={(event) => setAccess(event.target.value as AccessFilter)} aria-label="Filtra per accesso">
-          <option value="tutti">Free + Premium</option><option value="free">Solo Free</option><option value="premium">Solo Premium</option>
+          <option value="tutti">Tutti gli accessi</option><option value="preview">Anteprime</option><option value="member">Contenuti membri</option>
         </select>
       </div>
       <p className={styles.resultCount}>{filtered.length} contenuti</p>

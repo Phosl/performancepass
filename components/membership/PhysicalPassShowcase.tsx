@@ -2,16 +2,18 @@
 
 import Image from "next/image";
 import { useRef, type PointerEvent } from "react";
-import { ArrowRight, MapPin, Sparkle, Storefront } from "@phosphor-icons/react";
+import { ArrowRight, Heart, IdentificationCard, ShieldCheck } from "@phosphor-icons/react";
 import gsap from "gsap";
-import { useAthlete } from "@/context/AthleteContext";
+import { useMember } from "@/context/MemberContext";
+import { BrandLockup } from "@/components/brand/BrandLockup";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { TransitionLink } from "@/components/transitions/TransitionLink";
 import styles from "./physicalPassShowcase.module.scss";
 
 export function PhysicalPassShowcase() {
-  const { profile } = useAthlete();
+  const { profile, isMember } = useMember();
   const cardRef = useRef<HTMLDivElement>(null);
+  const displayedNumber = profile.memberNumber ?? "PP-DEMO-••••••••";
 
   const moveCard = (event: PointerEvent<HTMLElement>) => {
     if (!cardRef.current || window.matchMedia("(prefers-reduced-motion: reduce), (pointer: coarse)").matches) return;
@@ -27,19 +29,19 @@ export function PhysicalPassShowcase() {
   };
 
   return (
-    <section id="physical-pass" className={styles.section} aria-labelledby="physical-pass-title">
+    <section id="pass-preview" className={styles.section} aria-labelledby="pass-preview-title">
       <div className={`shell ${styles.layout}`}>
         <div className={styles.copy}>
-          <span className={styles.eyebrow}><Sparkle size={15} weight="fill" aria-hidden="true" /> Il Pass che ti segue in pista</span>
-          <h2 id="physical-pass-title">Digitale nel percorso.<br /><span>Reale nei vantaggi.</span></h2>
-          <p>Mostra il Pass nei negozi affiliati o usalo online per accedere ai vantaggi del tuo livello.</p>
+          <span className={styles.eyebrow}><IdentificationCard size={16} weight="fill" aria-hidden="true" /> Il mio Pass</span>
+          <h2 id="pass-preview-title">La membership,<br /><span>in una sola card.</span></h2>
+          <p>Un punto di accesso alla demo per ritrovare stato del Pass, contenuti preferiti e richiesta Azzurro.</p>
           <ul>
-            <li><Storefront size={18} aria-hidden="true" /><span><strong>16 partner selezionati</strong> tra pista, attrezzatura e recovery</span></li>
-            <li><MapPin size={18} aria-hidden="true" /><span><strong>Online e in store</strong> con benefit pensati per l’atletica</span></li>
+            <li><ShieldCheck size={18} aria-hidden="true" /><span><strong>Numero demo stabile</strong> salvato solo in questo browser</span></li>
+            <li><Heart size={18} aria-hidden="true" /><span><strong>Preferiti conservati</strong> senza creare un account reale</span></li>
           </ul>
           <div className={styles.actions}>
-            <ButtonLink href="#membership" variant="secondary" arrow>Confronta i Pass</ButtonLink>
-            <TransitionLink href="/vantaggi#partner-directory">Scopri dove usarla <ArrowRight size={17} weight="bold" aria-hidden="true" /></TransitionLink>
+            <ButtonLink href={isMember ? "/il-mio-pass" : "/iscriviti"} variant="secondary" arrow>{isMember ? "Apri Il mio Pass" : "Attiva il Pass demo"}</ButtonLink>
+            <TransitionLink href="/contenuti">Esplora i contenuti <ArrowRight size={17} weight="bold" aria-hidden="true" /></TransitionLink>
           </div>
         </div>
 
@@ -51,22 +53,22 @@ export function PhysicalPassShowcase() {
             onPointerMove={moveCard}
             onPointerLeave={resetCard}
             role="img"
-            aria-label={`Pro Pass fisica intestata a ${profile.name}`}
+            aria-label={`Card membership demo intestata a ${profile.name}, numero ${displayedNumber}`}
           >
             <Image src="/images/generated/pro-pass-surface.webp" alt="" fill sizes="(max-width: 860px) 88vw, 52vw" />
             <div className={styles.cardGlow} aria-hidden="true" />
             <div className={styles.cardTop}>
-              <span className={styles.cardBrand}>Performance<i>Pass</i></span>
-              <span className={styles.cardTier}>PRO PASS</span>
+              <BrandLockup className={styles.cardLockup} />
+              <span className={styles.cardStatus}>MEMBRO DEMO</span>
             </div>
             <div className={styles.cardMonogram} aria-hidden="true">P</div>
             <div className={styles.cardBottom}>
-              <div><small>ATLETA</small><strong>{profile.name || "Atleta"}</strong></div>
-              <div><small>SPECIALITÀ</small><strong>{profile.discipline}</strong></div>
-              <span>PP · 00017</span>
+              <div><small>NOME</small><strong>{profile.name || "Atleta"}</strong></div>
+              <div><small>NUMERO</small><strong>{displayedNumber}</strong></div>
+              <div><small>FIRMA</small><strong>Atletica TV</strong></div>
             </div>
           </div>
-          <span className={styles.cardCaption}>Pro Edition · Card demo</span>
+          <span className={styles.cardCaption}>Card membership · anteprima locale non operativa</span>
         </div>
       </div>
     </section>

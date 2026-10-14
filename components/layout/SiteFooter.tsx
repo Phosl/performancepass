@@ -1,26 +1,22 @@
-"use client";
-
-import { useState, type FormEvent } from "react";
-import { ArrowRight, ArrowUpRight, Check, EnvelopeSimple, SealCheck } from "@phosphor-icons/react";
+import { ArrowRight, ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
+import { BrandLockup } from "@/components/brand/BrandLockup";
 import { TransitionLink } from "@/components/transitions/TransitionLink";
 import styles from "./SiteFooter.module.scss";
 
 const footerGroups = [
   {
-    title: "Piattaforma",
+    title: "Esplora",
     links: [
-      { href: "/", label: "Home" },
-      { href: "/video", label: "Video training" },
-      { href: "/corsi", label: "Mini-corsi" },
       { href: "/vantaggi", label: "Vantaggi" },
+      { href: "/contenuti", label: "Contenuti & Formazione" },
+      { href: "/partner", label: "Partner" },
     ],
   },
   {
-    title: "Il tuo Pass",
+    title: "Membership",
     links: [
-      { href: "/onboarding", label: "Crea il profilo" },
-      { href: "/dashboard", label: "Percorso personale" },
-      { href: "/profilo", label: "Profilo e membership" },
+      { href: "/iscriviti", label: "Iscriviti" },
+      { href: "/il-mio-pass", label: "Il mio Pass" },
     ],
   },
   {
@@ -32,55 +28,40 @@ const footerGroups = [
   },
 ] as const;
 
-type NewsletterStatus = "idle" | "success" | "error";
-
 export function SiteFooter() {
-  const [email, setEmail] = useState("");
-  const [status, setStatus] = useState<NewsletterStatus>("idle");
-
-  const subscribe = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    try {
-      window.localStorage.setItem("performance-pass-newsletter", email.trim());
-      setStatus("success");
-      setEmail("");
-    } catch {
-      setStatus("error");
-    }
-  };
-
   return (
     <footer className={styles.footer}>
       <div className="shell">
         <section className={styles.footerHero} aria-labelledby="footer-hero-title">
           <div className={styles.heroCopy}>
-            <p>IL PROSSIMO PASSO È TUO</p>
-            <h2 id="footer-hero-title">Porta il tuo allenamento<br /><span>oltre il cronometro.</span></h2>
+            <p className={styles.eyebrow}>PERFORMANCE PASS · BY ATLETICA TV</p>
+            <h2 id="footer-hero-title">L’atletica, dentro<br /><span>e fuori la pista.</span></h2>
+            <p className={styles.heroLead}>La membership di Atletica TV che riunisce vantaggi dedicati, contenuti riservati e formazione.</p>
             <div className={styles.heroActions}>
-              <TransitionLink href="/onboarding" className={styles.primaryAction}>
-                Crea il tuo profilo <ArrowUpRight size={19} weight="bold" aria-hidden="true" />
+              <TransitionLink href="/iscriviti" className={styles.primaryAction}>
+                Entra nel club <ArrowUpRight size={19} weight="bold" aria-hidden="true" />
               </TransitionLink>
-              <TransitionLink href="/vantaggi" className={styles.secondaryAction}>
-                Esplora i vantaggi <ArrowRight size={17} weight="bold" aria-hidden="true" />
+              <TransitionLink href="/contenuti" className={styles.secondaryAction}>
+                Scopri i contenuti <ArrowRight size={17} weight="bold" aria-hidden="true" />
               </TransitionLink>
             </div>
           </div>
 
           <div className={styles.heroPass} aria-hidden="true">
-            <div className={styles.heroPassTop}><span>PERFORMANCE PASS</span><span>01 — 26</span></div>
-            <strong>PP</strong>
-            <div className={styles.heroPassBottom}><span>TRACK / FIELD</span><span>MOVE FORWARD</span></div>
+            <div className={styles.heroPassTop}><span>MEMBERSHIP DEMO</span><span>ACCESSO LOCALE</span></div>
+            <BrandLockup className={styles.heroLockup} />
+            <strong>PASS</strong>
+            <div className={styles.heroPassBottom}><span>CONTENUTI</span><span>FORMAZIONE</span><span>VANTAGGI</span></div>
           </div>
         </section>
 
         <div className={styles.footerMiddle}>
           <div className={styles.brandColumn}>
-            <TransitionLink href="/" className={styles.logo} aria-label="Performance Pass, home">
-              <span>P</span><strong>Performance<i>Pass</i></strong>
+            <TransitionLink href="/" className={styles.logo} aria-label="Performance Pass by Atletica TV, home">
+              <BrandLockup className={styles.footerLockup} />
             </TransitionLink>
-            <p>Video, mini-corsi e vantaggi selezionati intorno alla tua specialità atletica.</p>
-            <div className={styles.brandStatus}><i /><span>Piattaforma demo attiva</span></div>
-            <a href="mailto:hello@performancepass.it">hello@performancepass.it</a>
+            <p>Un unico accesso all’universo Atletica TV, tra contenuti, formazione e opportunità dedicate alla community.</p>
+            <div className={styles.brandStatus}><i /><span>Esperienza dimostrativa locale</span></div>
           </div>
 
           <nav className={styles.linkColumns} aria-label="Navigazione nel footer">
@@ -92,30 +73,21 @@ export function SiteFooter() {
             ))}
           </nav>
 
-          <div className={styles.newsletter}>
-            <div className={styles.newsletterHead}>
-              <span className={styles.newsletterIcon}><EnvelopeSimple size={20} aria-hidden="true" /></span>
-              <span><small>PASS NOTES</small><SealCheck size={15} weight="fill" aria-hidden="true" /></span>
-            </div>
-            <h3>Allenamento, vantaggi e nuove release.</h3>
-            {status === "success" ? (
-              <div className={styles.newsletterSuccess} role="status"><Check size={18} weight="bold" aria-hidden="true" /> Sei nella lista.</div>
-            ) : (
-              <form onSubmit={subscribe}>
-                <label className="srOnly" htmlFor="footer-email">La tua email</label>
-                <input id="footer-email" type="email" value={email} onChange={(event) => { setEmail(event.target.value); setStatus("idle"); }} placeholder="La tua email" autoComplete="email" required />
-                <button type="submit" aria-label="Iscriviti a Pass Notes"><ArrowRight size={19} weight="bold" aria-hidden="true" /></button>
-              </form>
-            )}
-            <small>{status === "error" ? "Non siamo riusciti a salvare l’indirizzo. Riprova." : "Demo locale: l’indirizzo resta solo su questo dispositivo."}</small>
-          </div>
+          <aside className={styles.endorsement} aria-labelledby="atletica-tv-title">
+            <p className={styles.endorsementLabel}>BY ATLETICA TV</p>
+            <h3 id="atletica-tv-title">L’atletica ha già una casa.</h3>
+            <p>Performance Pass nasce dentro l’esperienza editoriale e formativa di Atletica TV.</p>
+            <a href="https://atletica.tv/">
+              Visita Atletica TV <ArrowUpRight size={16} weight="bold" aria-hidden="true" />
+            </a>
+          </aside>
         </div>
 
-        <div className={styles.wordmark} aria-hidden="true"><span>Performance</span><strong>Pass<span>™</span></strong></div>
+        <div className={styles.wordmark} aria-hidden="true"><span>Performance</span><strong>Pass</strong></div>
         <div className={styles.footerBottom}>
           <span>© {new Date().getFullYear()} Performance Pass</span>
-          <span>Progettato in Italia per chi vive l’atletica.</span>
-          <a href="mailto:partner@performancepass.it">Diventa partner <ArrowUpRight size={14} aria-hidden="true" /></a>
+          <span>Demo locale: nessun account o pagamento reale.</span>
+          <a href="https://atletica.tv/">Atletica TV <ArrowUpRight size={14} aria-hidden="true" /></a>
         </div>
       </div>
     </footer>

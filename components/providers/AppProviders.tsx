@@ -1,7 +1,7 @@
 "use client";
 
-import { AthleteProvider } from "@/context/AthleteContext";
+import { MemberProvider } from "@/context/MemberContext";
 
 export function AppProviders({ children }: { children: React.ReactNode }) {
-  return <AthleteProvider>{children}</AthleteProvider>;
+  return <MemberProvider>{children}</MemberProvider>;
 }

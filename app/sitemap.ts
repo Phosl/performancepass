@@ -6,6 +6,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date();
   const publicPages: MetadataRoute.Sitemap = [
     { url: absoluteUrl("/"), lastModified, changeFrequency: "weekly", priority: 1 },
+    { url: absoluteUrl("/contenuti"), lastModified, changeFrequency: "weekly", priority: .9 },
+    { url: absoluteUrl("/partner"), lastModified, changeFrequency: "weekly", priority: .8 },
     { url: absoluteUrl("/video"), lastModified, changeFrequency: "weekly", priority: .9 },
     { url: absoluteUrl("/corsi"), lastModified, changeFrequency: "monthly", priority: .8 },
     { url: absoluteUrl("/vantaggi"), lastModified, changeFrequency: "weekly", priority: .8 },

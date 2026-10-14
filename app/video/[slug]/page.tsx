@@ -36,12 +36,11 @@ export default async function VideoDetailPage({ params }: VideoDetailPageProps) 
     url: pageUrl,
     thumbnailUrl: absoluteUrl(video.image),
     inLanguage: "it-IT",
-    learningResourceType: "Video training",
+    learningResourceType: "Scheda video dimostrativa",
     educationalLevel: video.level,
     timeRequired: `PT${video.duration}M`,
-    isAccessibleForFree: video.access === "free",
     about: [...video.disciplines, ...video.goals],
-    provider: { "@type": "Organization", name: "Performance Pass", url: absoluteUrl("/") },
+    provider: { "@type": "Organization", name: "Performance Pass by Atletica TV", url: absoluteUrl("/") },
   };
 
   return <><JsonLd data={structuredData} /><VideoDetailView video={video} /></>;

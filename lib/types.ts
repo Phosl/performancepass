@@ -7,18 +7,17 @@ export type Discipline = (typeof disciplines)[number];
 export type AthleteLevel = (typeof levels)[number];
 export type Goal = (typeof goals)[number];
 export type Frequency = (typeof frequencies)[number];
-export type Membership = "free" | "premium" | "pro";
-export type ContentAccess = Exclude<Membership, "pro">;
+export type MemberStatus = "visitor" | "member";
+export type AzzurroRequestStatus = "not-requested" | "pending";
+export type DemoMemberNumber = `PP-DEMO-${string}`;
+export type ContentAccess = "preview" | "member";
 
-export interface AthleteProfile {
+export interface MemberProfileV3 {
   name: string;
-  discipline: Discipline;
-  level: AthleteLevel;
-  goal: Goal;
-  frequency: Frequency;
-  membership: Membership;
+  status: MemberStatus;
+  memberNumber: DemoMemberNumber | null;
+  azzurroRequestStatus: AzzurroRequestStatus;
   favorites: string[];
-  onboardingComplete: boolean;
 }
 
 export interface TrainingVideo {
@@ -41,7 +40,7 @@ export interface TrainingVideo {
 export interface CourseLesson {
   title: string;
   duration: number;
-  free: boolean;
+  access: ContentAccess;
 }
 
 export interface MiniCourse {
@@ -53,26 +52,4 @@ export interface MiniCourse {
   image: string;
   imageAlt: string;
   lessons: CourseLesson[];
-}
-
-export interface Benefit {
-  id: string;
-  partner: string;
-  category: string;
-  title: string;
-  description: string;
-  value: string;
-  code: string;
-  accent: "lime" | "orange" | "blue" | "violet";
-}
-
-export interface PartnerStore {
-  id: string;
-  name: string;
-  category: "Nutrizione" | "Training" | "Attrezzatura" | "Outdoor" | "Recovery" | "Servizi";
-  description: string;
-  availability: "Online" | "In store" | "Online + In store";
-  location: string;
-  memberBenefit: string;
-  accent: "lime" | "orange" | "blue" | "violet" | "sand";
 }

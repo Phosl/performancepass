@@ -2,7 +2,7 @@ import styles from "./ui.module.scss";
 
 interface BadgeProps {
   children: React.ReactNode;
-  tone?: "free" | "premium" | "neutral" | "accent";
+  tone?: "preview" | "member" | "neutral" | "accent";
 }
 
 export function Badge({ children, tone = "neutral" }: BadgeProps) {

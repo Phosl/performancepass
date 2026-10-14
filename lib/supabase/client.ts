@@ -1,15 +1,8 @@
 /**
  * Placeholder per la futura integrazione Supabase.
  *
- * Tabelle previste:
- * - profiles: user_id, name, discipline, level, goal, frequency, membership (free | premium | pro)
- * - videos: contenuti, metadati, access_level e tassonomie
- * - favorites: user_id, video_id, created_at
- * - courses / course_lessons: percorsi, ordine e accesso delle lezioni
- * - partners / partner_locations: anagrafica affiliati, canali e sedi
- * - benefits: partner_id, codice, validità e requisiti membership
- *
- * In produzione la validazione definitiva di membership e accesso ai contenuti
- * dovrà vivere sul server con RLS attiva; LocalStorage è solo per questa demo.
+ * Nessun backend, account o pagamento è collegato in questa fase. Un’eventuale
+ * implementazione futura richiederà schema, credenziali, autenticazione e regole
+ * di autorizzazione approvati. Il profilo v3 resta soltanto nel LocalStorage.
  */
 export const supabaseReady = false;

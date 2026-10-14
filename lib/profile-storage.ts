@@ -1,46 +1,38 @@
-import {
-  disciplines,
-  frequencies,
-  goals,
-  levels,
-  type AthleteProfile,
-  type Discipline,
-  type Goal,
-  type Membership,
-} from "@/lib/types";
+import type {
+  AzzurroRequestStatus,
+  DemoMemberNumber,
+  MemberProfileV3,
+  MemberStatus,
+} from "./types";
 
-export const PROFILE_STORAGE_KEY = "performance-pass-profile-v2";
-export const LEGACY_PROFILE_STORAGE_KEY = "performance-pass-profile-v1";
+export const MEMBER_PROFILE_STORAGE_KEY = "performance-pass-profile-v3";
+export const LEGACY_PROFILE_V2_STORAGE_KEY = "performance-pass-profile-v2";
+export const LEGACY_PROFILE_V1_STORAGE_KEY = "performance-pass-profile-v1";
 
-export const defaultProfile: AthleteProfile = {
+export const defaultMemberProfile: MemberProfileV3 = {
   name: "Atleta",
-  discipline: "Velocità",
-  level: "Intermedio",
-  goal: "Velocità",
-  frequency: "3–4 volte",
-  membership: "free",
-  favorites: ["v2"],
-  onboardingComplete: false,
+  status: "visitor",
+  memberNumber: null,
+  azzurroRequestStatus: "not-requested",
+  favorites: [],
 };
 
-const legacyDisciplineMap: Record<string, Discipline> = {
-  Corsa: "Mezzofondo e fondo",
-  Ciclismo: "Mezzofondo e fondo",
-  Nuoto: "Mezzofondo e fondo",
-  Fitness: "Velocità",
-  Tennis: "Velocità",
-  Yoga: "Prove multiple",
-};
+export interface MemberProfileStorage {
+  getItem(key: string): string | null;
+  setItem(key: string, value: string): void;
+  removeItem(key: string): void;
+}
 
-const legacyGoalMap: Record<string, Goal> = {
-  Resistenza: "Resistenza",
-  Forza: "Forza esplosiva",
-  Velocità: "Velocità",
-  Mobilità: "Tecnica",
-  Benessere: "Tecnica",
-};
+export interface ActivateDemoMembershipInput {
+  name: string;
+  requestAzzurro?: boolean;
+}
 
-const memberships: readonly Membership[] = ["free", "premium", "pro"];
+const memberStatuses: readonly MemberStatus[] = ["visitor", "member"];
+const azzurroRequestStatuses: readonly AzzurroRequestStatus[] = ["not-requested", "pending"];
+const legacyMemberships = ["free", "premium", "pro"] as const;
+const demoMemberNumberPattern = /^PP-DEMO-[A-Z0-9]{8}$/;
+const demoMemberNumberAlphabet = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null && !Array.isArray(value);
@@ -50,51 +42,163 @@ function includes<T extends string>(values: readonly T[], value: unknown): value
   return typeof value === "string" && values.includes(value as T);
 }
 
-export function normalizeStoredProfile(value: unknown): AthleteProfile | null {
-  if (!isRecord(value)) return null;
+export function normalizeMemberName(value: unknown): string {
+  return typeof value === "string" && value.trim()
+    ? value.trim().slice(0, 64)
+    : defaultMemberProfile.name;
+}
 
-  const discipline = includes(disciplines, value.discipline)
-    ? value.discipline
-    : typeof value.sport === "string"
-      ? legacyDisciplineMap[value.sport] ?? defaultProfile.discipline
-      : defaultProfile.discipline;
-  const goal = includes(goals, value.goal)
-    ? value.goal
-    : typeof value.goal === "string"
-      ? legacyGoalMap[value.goal] ?? defaultProfile.goal
-      : defaultProfile.goal;
+function normalizeFavorites(value: unknown): string[] {
+  if (!Array.isArray(value)) return [];
+
+  return [...new Set(
+    value
+      .filter((item): item is string => typeof item === "string")
+      .map((item) => item.trim())
+      .filter(Boolean),
+  )];
+}
+
+function isDemoMemberNumber(value: unknown): value is DemoMemberNumber {
+  return typeof value === "string" && demoMemberNumberPattern.test(value);
+}
+
+export function createDefaultMemberProfile(): MemberProfileV3 {
+  return { ...defaultMemberProfile, favorites: [] };
+}
+
+export function createDemoMemberNumber(random: () => number = Math.random): DemoMemberNumber {
+  let suffix = "";
+
+  for (let index = 0; index < 8; index += 1) {
+    const randomValue = Math.min(Math.max(random(), 0), 0.9999999999999999);
+    suffix += demoMemberNumberAlphabet[Math.floor(randomValue * demoMemberNumberAlphabet.length)];
+  }
+
+  return `PP-DEMO-${suffix}`;
+}
+
+export function normalizeMemberProfileV3(
+  value: unknown,
+  createMemberNumber: () => DemoMemberNumber = createDemoMemberNumber,
+): MemberProfileV3 | null {
+  if (!isRecord(value) || !includes(memberStatuses, value.status)) return null;
+
+  const status = value.status;
+  const memberNumber = status === "member"
+    ? isDemoMemberNumber(value.memberNumber) ? value.memberNumber : createMemberNumber()
+    : null;
 
   return {
-    name: typeof value.name === "string" && value.name.trim() ? value.name.trim().slice(0, 32) : defaultProfile.name,
-    discipline,
-    level: includes(levels, value.level) ? value.level : defaultProfile.level,
-    goal,
-    frequency: includes(frequencies, value.frequency) ? value.frequency : defaultProfile.frequency,
-    membership: includes(memberships, value.membership) ? value.membership : defaultProfile.membership,
-    favorites: Array.isArray(value.favorites) ? value.favorites.filter((item): item is string => typeof item === "string") : defaultProfile.favorites,
-    onboardingComplete: typeof value.onboardingComplete === "boolean" ? value.onboardingComplete : defaultProfile.onboardingComplete,
+    name: normalizeMemberName(value.name),
+    status,
+    memberNumber,
+    azzurroRequestStatus: includes(azzurroRequestStatuses, value.azzurroRequestStatus)
+      ? value.azzurroRequestStatus
+      : "not-requested",
+    favorites: normalizeFavorites(value.favorites),
   };
 }
 
-function parseProfile(value: string | null): AthleteProfile | null {
+function normalizeLegacyProfile(
+  value: unknown,
+  createMemberNumber: () => DemoMemberNumber,
+): MemberProfileV3 | null {
+  if (!isRecord(value) || !includes(legacyMemberships, value.membership)) return null;
+
+  const status: MemberStatus = value.membership === "free" ? "visitor" : "member";
+
+  return {
+    name: normalizeMemberName(value.name),
+    status,
+    memberNumber: status === "member" ? createMemberNumber() : null,
+    azzurroRequestStatus: "not-requested",
+    favorites: normalizeFavorites(value.favorites),
+  };
+}
+
+function parseProfile(
+  value: string | null,
+  normalize: (parsed: unknown) => MemberProfileV3 | null,
+): MemberProfileV3 | null {
   if (!value) return null;
+
   try {
-    return normalizeStoredProfile(JSON.parse(value) as unknown);
+    return normalize(JSON.parse(value) as unknown);
   } catch {
     return null;
   }
 }
 
-export function readAthleteProfile(storage: Pick<Storage, "getItem">): AthleteProfile {
-  return parseProfile(storage.getItem(PROFILE_STORAGE_KEY))
-    ?? parseProfile(storage.getItem(LEGACY_PROFILE_STORAGE_KEY))
-    ?? defaultProfile;
+export function writeMemberProfile(storage: Pick<MemberProfileStorage, "setItem" | "removeItem">, profile: MemberProfileV3): void {
+  storage.setItem(MEMBER_PROFILE_STORAGE_KEY, JSON.stringify(profile));
+
+  for (const legacyKey of [LEGACY_PROFILE_V2_STORAGE_KEY, LEGACY_PROFILE_V1_STORAGE_KEY]) {
+    try {
+      storage.removeItem(legacyKey);
+    } catch {
+      // The v3 profile is already safe; stale legacy data can be retried later.
+    }
+  }
 }
 
-export function writeAthleteProfile(
-  storage: Pick<Storage, "setItem" | "removeItem">,
-  profile: AthleteProfile,
-) {
-  storage.setItem(PROFILE_STORAGE_KEY, JSON.stringify(profile));
-  storage.removeItem(LEGACY_PROFILE_STORAGE_KEY);
+export function readMemberProfile(
+  storage: MemberProfileStorage,
+  createMemberNumber: () => DemoMemberNumber = createDemoMemberNumber,
+): MemberProfileV3 {
+  const candidates = [
+    {
+      key: MEMBER_PROFILE_STORAGE_KEY,
+      normalize: (value: unknown) => normalizeMemberProfileV3(value, createMemberNumber),
+    },
+    {
+      key: LEGACY_PROFILE_V2_STORAGE_KEY,
+      normalize: (value: unknown) => normalizeLegacyProfile(value, createMemberNumber),
+    },
+    {
+      key: LEGACY_PROFILE_V1_STORAGE_KEY,
+      normalize: (value: unknown) => normalizeLegacyProfile(value, createMemberNumber),
+    },
+  ] as const;
+
+  for (const candidate of candidates) {
+    const profile = parseProfile(storage.getItem(candidate.key), candidate.normalize);
+    if (!profile) continue;
+
+    try {
+      writeMemberProfile(storage, profile);
+    } catch {
+      // Keep the migrated profile in memory without deleting its legacy source.
+    }
+
+    return profile;
+  }
+
+  return createDefaultMemberProfile();
+}
+
+export function activateDemoMembership(
+  profile: MemberProfileV3,
+  input: ActivateDemoMembershipInput,
+  createMemberNumber: () => DemoMemberNumber = createDemoMemberNumber,
+): MemberProfileV3 {
+  return {
+    ...profile,
+    name: normalizeMemberName(input.name),
+    status: "member",
+    memberNumber: profile.memberNumber ?? createMemberNumber(),
+    azzurroRequestStatus: input.requestAzzurro ? "pending" : profile.azzurroRequestStatus,
+  };
+}
+
+export function toggleMemberFavorite(profile: MemberProfileV3, contentId: string): MemberProfileV3 {
+  const normalizedId = contentId.trim();
+  if (!normalizedId) return profile;
+
+  return {
+    ...profile,
+    favorites: profile.favorites.includes(normalizedId)
+      ? profile.favorites.filter((id) => id !== normalizedId)
+      : [...profile.favorites, normalizedId],
+  };
 }

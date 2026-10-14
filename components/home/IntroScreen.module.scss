@@ -1,0 +1,43 @@
+.intro {
+  position: fixed;
+  z-index: 100;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  padding: 1.5rem;
+  background: var(--ink);
+  color: white;
+}
+
+.introBrand {
+  max-width: 100%;
+  display: grid;
+  place-items: center;
+}
+
+.lockup {
+  --brand-lockup-ink: var(--paper);
+  --brand-lockup-accent: var(--accent);
+  --brand-lockup-size: clamp(1.55rem, 5vw, 4.5rem);
+  --brand-lockup-logo-width: clamp(6.2rem, 16vw, 13.5rem);
+}
+
+.intro p {
+  margin-top: 1.4rem;
+  color: rgba(255, 255, 255, .62);
+  font-size: clamp(.66rem, 1.6vw, .92rem);
+  font-weight: 680;
+  letter-spacing: .16em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+@media (max-width: 620px) {
+  .lockup {
+    --brand-lockup-size: clamp(.92rem, 4.2vw, 1.4rem);
+    --brand-lockup-logo-width: clamp(4.4rem, 22vw, 6.4rem);
+  }
+
+  .intro p { letter-spacing: .1em; }
+}

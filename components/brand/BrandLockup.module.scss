@@ -1,0 +1,63 @@
+.root {
+  min-width: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: .58em;
+  color: var(--brand-lockup-ink, var(--ink));
+  font-size: var(--brand-lockup-size, 1rem);
+  line-height: 1;
+}
+
+.productName {
+  display: inline-flex;
+  align-items: baseline;
+  flex: 0 0 auto;
+  font-family: var(--font-display), sans-serif;
+  font-weight: 820;
+  letter-spacing: -.055em;
+}
+
+.productName strong {
+  margin-left: .14em;
+  color: var(--brand-lockup-accent, var(--accent-strong));
+  font-weight: inherit;
+}
+
+.divider {
+  width: 1px;
+  height: 1.6em;
+  flex: 0 0 auto;
+  background: currentColor;
+  opacity: .2;
+}
+
+.network {
+  min-width: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: .38em;
+}
+
+.network small {
+  color: currentColor;
+  font-size: .52em;
+  font-weight: 760;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  opacity: .68;
+}
+
+.networkMark {
+  width: var(--brand-lockup-logo-width, 5.35rem);
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  padding: .2em .3em;
+  border-radius: .28em;
+  background: #020203;
+}
+
+.networkMark img {
+  width: 100%;
+  height: auto;
+}

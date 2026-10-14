@@ -1,48 +1,86 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { House, Play, SquaresFour, Gift, UserCircle } from "@phosphor-icons/react";
-import { useAthlete } from "@/context/AthleteContext";
+import { Gift, House, IdentificationCard, Play, Storefront } from "@phosphor-icons/react";
+import { BrandLockup } from "@/components/brand/BrandLockup";
 import { TransitionLink } from "@/components/transitions/TransitionLink";
 import styles from "./AppHeader.module.scss";
 
 const nav = [
-  { href: "/", label: "Home", Icon: House },
-  { href: "/dashboard", label: "Per te", Icon: SquaresFour },
-  { href: "/video", label: "Video", Icon: Play },
-  { href: "/vantaggi", label: "Vantaggi", Icon: Gift },
-];
+  { href: "/", label: "Home", Icon: House, activePaths: ["/"] },
+  { href: "/vantaggi", label: "Vantaggi", Icon: Gift, activePaths: ["/vantaggi"] },
+  { href: "/contenuti", label: "Contenuti", Icon: Play, activePaths: ["/contenuti", "/video", "/corsi"] },
+  { href: "/partner", label: "Partner", Icon: Storefront, activePaths: ["/partner"] },
+  { href: "/il-mio-pass", label: "Il mio Pass", Icon: IdentificationCard, activePaths: ["/il-mio-pass"] },
+] as const;
+
+function matchesPath(pathname: string, paths: readonly string[]) {
+  return paths.some((path) => path === "/"
+    ? pathname === "/"
+    : pathname === path || pathname.startsWith(`${path}/`));
+}
 
 export function AppHeader() {
   const pathname = usePathname();
-  const { profile } = useAthlete();
-  const isActive = (href: string) => href === "/" ? pathname === "/" : pathname.startsWith(href);
+  const joinIsActive = matchesPath(pathname, ["/iscriviti"]);
 
   return (
     <>
       <header className={styles.header}>
         <div className={`shell ${styles.inner}`}>
-          <TransitionLink href="/" className={styles.logo} aria-label="Performance Pass, home">
-            <span className={styles.logoMark}>P</span>
-            <span>Performance<span>Pass</span></span>
+          <TransitionLink href="/" className={styles.logo} aria-label="Performance Pass by Atletica TV, home">
+            <BrandLockup className={styles.brandLockup} />
           </TransitionLink>
+
           <nav className={styles.desktopNav} aria-label="Navigazione principale">
-            {nav.map((item) => (
-              <TransitionLink key={item.href} href={item.href} className={isActive(item.href) ? styles.active : ""}>{item.label}</TransitionLink>
-            ))}
+            {nav.map((item) => {
+              const active = matchesPath(pathname, item.activePaths);
+              return (
+                <TransitionLink
+                  key={item.href}
+                  href={item.href}
+                  className={active ? styles.active : undefined}
+                  aria-current={active ? "page" : undefined}
+                >
+                  {item.label}
+                </TransitionLink>
+              );
+            })}
+            <TransitionLink
+              href="/iscriviti"
+              className={`${styles.joinAction} ${joinIsActive ? styles.joinActive : ""}`}
+              aria-current={joinIsActive ? "page" : undefined}
+            >
+              Iscriviti
+            </TransitionLink>
           </nav>
-          <TransitionLink href="/profilo" className={styles.profileLink} aria-label="Apri il profilo">
-            <span className={styles.avatar}>{profile.name.slice(0, 1).toUpperCase()}</span>
-            <span className={styles.profileText}><small>Profilo</small>{profile.name}</span>
+
+          <TransitionLink
+            href="/iscriviti"
+            className={`${styles.mobileJoin} ${joinIsActive ? styles.joinActive : ""}`}
+            aria-current={joinIsActive ? "page" : undefined}
+          >
+            Iscriviti
           </TransitionLink>
         </div>
       </header>
-      <nav className={styles.mobileNav} aria-label="Navigazione mobile">
-        {[...nav.slice(0, 3), { href: "/profilo", label: "Profilo", Icon: UserCircle }].map(({ href, label, Icon }) => (
-          <TransitionLink key={href} href={href} className={isActive(href) ? styles.activeMobile : ""}>
-            <Icon size={21} weight={isActive(href) ? "fill" : "regular"} aria-hidden="true" /><span>{label}</span>
-          </TransitionLink>
-        ))}
+
+      <nav className={styles.mobileNav} aria-label="Navigazione principale mobile">
+        {nav.map((item) => {
+          const active = matchesPath(pathname, item.activePaths);
+          const Icon = item.Icon;
+          return (
+            <TransitionLink
+              key={item.href}
+              href={item.href}
+              className={active ? styles.activeMobile : undefined}
+              aria-current={active ? "page" : undefined}
+            >
+              <Icon size={20} weight={active ? "fill" : "regular"} aria-hidden="true" />
+              <span>{item.label}</span>
+            </TransitionLink>
+          );
+        })}
       </nav>
     </>
   );

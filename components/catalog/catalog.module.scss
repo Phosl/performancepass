@@ -17,8 +17,16 @@
 .memberBanner > div { display: grid; gap: .12rem; margin-right: auto; }
 .memberBanner small { color: #92928d; font-size: .6rem; font-weight: 800; letter-spacing: .1em; }
 .memberBanner strong { font-size: 1rem; }.memberBanner p { color: #aaa; font-size: .74rem; }
-.benefitIntro { display: flex; align-items: center; gap: .45rem; margin-bottom: 1rem; color: var(--muted); font-size: .74rem; }
-.benefitIntro svg { color: #769c00; }
+.opportunityIntro { max-width: 720px; margin: 4rem 0 1.4rem; }
+.opportunityIntro > p { color: var(--accent-strong); font-size: .67rem; font-weight: 820; letter-spacing: .11em; text-transform: uppercase; }
+.opportunityIntro h2 { margin-top: .55rem; font-family: var(--font-display), sans-serif; font-size: clamp(2rem, 4vw, 3.7rem); line-height: .98; letter-spacing: -.065em; }
+.opportunityIntro > span { display: block; max-width: 610px; margin-top: .8rem; color: var(--muted); font-size: .86rem; line-height: 1.6; }
+.opportunityGrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; padding-bottom: 5rem; }
+.opportunityCard { min-height: 280px; display: flex; flex-direction: column; align-items: flex-start; padding: 1.3rem; border: 1px solid var(--line); border-radius: 22px; background: var(--surface); }
+.opportunityCard > svg { color: var(--accent-strong); }
+.statusChip { margin-top: 1.4rem; padding: .35rem .55rem; border-radius: 999px; background: rgba(117,217,255,.25); font-size: .58rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+.opportunityCard h3 { margin-top: auto; font-family: var(--font-display), sans-serif; font-size: 1.35rem; letter-spacing: -.045em; }
+.opportunityCard p { margin-top: .55rem; color: var(--muted); font-size: .75rem; line-height: 1.55; }
 
 .partnerSection { padding: 5rem 0; background: #ecece6; }
 .partnerToolbar { display: grid; grid-template-columns: minmax(240px, .55fr) 1fr; gap: 1rem; align-items: center; }
@@ -47,12 +55,14 @@
 .partnerMeta span { display: flex; align-items: center; gap: .35rem; }
 .partnerBenefit { display: flex; align-items: center; justify-content: space-between; gap: .6rem; margin-top: auto; padding-top: .85rem; border-top: 1px solid var(--line); }
 .partnerBenefit span { color: var(--muted); font-size: .61rem; }.partnerBenefit strong { font-size: .7rem; }
-.partnerEmpty { min-height: 280px; display: grid; place-content: center; justify-items: center; gap: .45rem; border: 1px dashed #c0c0b8; border-radius: 22px; text-align: center; }
+.partnerEmpty { min-height: 280px; display: grid; place-content: center; justify-items: center; gap: .45rem; padding: 2rem; border: 1px dashed #a8b4b8; border-radius: 22px; text-align: center; }
 .partnerEmpty h3 { font-size: 1rem; }.partnerEmpty p { color: var(--muted); font-size: .75rem; }
-.partnerEmpty button { margin-top: .5rem; padding: .6rem .85rem; border: 0; border-radius: 999px; background: var(--ink); color: white; cursor: pointer; font-size: .7rem; font-weight: 720; }
+.partnerEmpty > p { max-width: 540px; line-height: 1.55; }
+.partnerEmpty > span { display: inline-flex; align-items: center; gap: .35rem; margin-top: .55rem; color: var(--accent-strong); font-size: .68rem; font-weight: 750; }
 
 @media (max-width: 900px) {
-  .videoGrid, .benefitGrid { grid-template-columns: 1fr 1fr; }
+  .videoGrid, .benefitGrid, .opportunityGrid { grid-template-columns: 1fr 1fr; }
+  .opportunityCard:last-child:nth-child(odd) { grid-column: 1 / -1; min-height: 230px; }
   .partnerToolbar { grid-template-columns: 1fr; }
   .partnerFilters { justify-content: flex-start; }
   .partnerGrid { grid-template-columns: repeat(2, 1fr); }
@@ -60,7 +70,8 @@
 @media (max-width: 650px) {
   .filters { align-items: flex-start; flex-wrap: wrap; }
   .filterLabel { width: 100%; }.chips { order: 3; flex-basis: 100%; }.filters select { margin-left: auto; }
-  .videoGrid, .benefitGrid { grid-template-columns: 1fr; }
+  .videoGrid, .benefitGrid, .opportunityGrid { grid-template-columns: 1fr; }
+  .opportunityCard:last-child:nth-child(odd) { grid-column: auto; }
   .courseGrid > article:nth-child(even) { grid-template-columns: 1fr; }.courseGrid > article:nth-child(even) > div:first-child { order: 0; }
   .memberBanner { align-items: flex-start; flex-wrap: wrap; }.memberBanner > div { width: calc(100% - 65px); }.memberBanner a { width: 100%; }
   .partnerSection { padding: 3.5rem 0; }

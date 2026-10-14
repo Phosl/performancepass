@@ -30,12 +30,13 @@ const PageTransitionContext = createContext<PageTransitionContextValue | null>(n
 
 const routeLabels: Record<string, string> = {
   "/": "Home",
-  "/dashboard": "Il tuo percorso",
-  "/onboarding": "Profilo atleta",
-  "/video": "Video training",
-  "/corsi": "Mini-corsi",
+  "/contenuti": "Contenuti",
+  "/video": "Video",
+  "/corsi": "Formazione",
   "/vantaggi": "Vantaggi",
-  "/profilo": "Il tuo profilo",
+  "/partner": "Partner",
+  "/iscriviti": "Entra nel club",
+  "/il-mio-pass": "Il mio Pass",
   "/privacy": "Privacy",
   "/termini": "Termini",
 };

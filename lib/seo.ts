@@ -12,13 +12,13 @@ function resolveSiteUrl() {
 
 export const siteConfig = {
   name: "Performance Pass",
-  defaultTitle: "Performance Pass | Allenamento per l’atletica leggera",
-  description: "Video tecnici, mini-corsi e vantaggi personalizzati per velocità, fondo, ostacoli, salti, lanci, marcia e prove multiple.",
+  defaultTitle: "Performance Pass | La membership di Atletica TV",
+  description: "La membership di Atletica TV che riunisce vantaggi dedicati, contenuti riservati e formazione.",
   url: resolveSiteUrl(),
   locale: "it_IT",
   language: "it-IT",
   socialImage: "/images/generated/athletics-sprint.webp",
-  socialImageAlt: "Velocista in accelerazione sulla pista di atletica Performance Pass",
+  socialImageAlt: "Velocista in pista per Performance Pass by Atletica TV",
 } as const;
 
 export function absoluteUrl(path = "/") {

@@ -1,0 +1,23 @@
+.contentNav { display: grid; grid-template-columns: repeat(4, 1fr); gap: .65rem; padding-bottom: 1.2rem; border-bottom: 1px solid var(--line); }
+.contentNav a { min-height: 46px; display: grid; place-items: center; padding: .65rem; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); color: var(--muted); font-size: .72rem; font-weight: 740; }
+.contentNav a:hover { border-color: rgba(17,116,146,.45); color: var(--ink); }
+.contentNav a:focus-visible { outline: 3px solid rgba(117,217,255,.45); outline-offset: 3px; }
+.courseSection { background: var(--ink); color: white; }
+.courseHeading :global(p) { color: #aaa; }
+.courseSection :global(a) { border-color: rgba(255,255,255,.45); }
+.upcomingSection { background: #ecece6; }
+.upcomingHeading { max-width: 760px; }
+.upcomingHeading > p { color: var(--accent-strong); font-size: .66rem; font-weight: 820; letter-spacing: .12em; }
+.upcomingHeading h2 { margin-top: .55rem; font-family: var(--font-display), sans-serif; font-size: clamp(2.2rem, 4.5vw, 4.2rem); line-height: .95; letter-spacing: -.07em; }
+.upcomingGrid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-top: 1.6rem; }
+.upcomingGrid article { min-height: 260px; display: flex; flex-direction: column; padding: 1.35rem; border: 1px dashed #abb7bb; border-radius: 22px; background: rgba(255,255,255,.46); }
+.upcomingGrid span { color: var(--accent-strong); font-size: .6rem; font-weight: 820; letter-spacing: .11em; }
+.upcomingGrid h3 { margin-top: auto; font-family: var(--font-display), sans-serif; font-size: 1.45rem; letter-spacing: -.045em; }
+.upcomingGrid p { max-width: 470px; margin-top: .55rem; color: var(--muted); font-size: .75rem; line-height: 1.55; }
+.upcomingNote { margin-top: 1rem; color: var(--muted); font-size: .64rem; }
+.passLink { display: inline-flex; margin-top: 1.2rem; padding-bottom: .2rem; border-bottom: 1px solid var(--ink); font-size: .72rem; font-weight: 750; }
+
+@media (max-width: 680px) {
+  .contentNav { grid-template-columns: repeat(2, 1fr); }
+  .upcomingGrid { grid-template-columns: 1fr; }
+}

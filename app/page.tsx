@@ -2,11 +2,11 @@ import { HomeContent } from "@/components/home/HomeContent";
 import { createPageMetadata } from "@/lib/seo";
 
 export const metadata = createPageMetadata({
-  title: "Performance Pass | Allenamento per l’atletica leggera",
-  description: "Performance Pass crea un percorso personalizzato per l’atletica leggera con tecnica, mini-corsi e vantaggi dedicati.",
+  title: "Performance Pass by Atletica TV | Membership per l’atletica",
+  description: "La membership di Atletica TV che riunisce vantaggi dedicati, contenuti riservati e formazione.",
   path: "/",
   absoluteTitle: true,
-  keywords: ["performance atletica", "allenamento personalizzato", "atletica leggera", "contenuti per atleti"],
+  keywords: ["Performance Pass", "Atletica TV", "membership atletica", "contenuti atletica", "formazione atletica"],
 });
 
 export default function HomePage() {

@@ -2,12 +2,12 @@
 
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
-import styles from "./home.module.scss";
+import { BrandLockup } from "@/components/brand/BrandLockup";
+import styles from "./IntroScreen.module.scss";
 
 export function IntroScreen() {
   const root = useRef<HTMLDivElement>(null);
-  const performance = useRef<HTMLSpanElement>(null);
-  const pass = useRef<HTMLSpanElement>(null);
+  const brand = useRef<HTMLDivElement>(null);
   const tagline = useRef<HTMLParagraphElement>(null);
   const [visible, setVisible] = useState(true);
 
@@ -20,9 +20,8 @@ export function IntroScreen() {
     window.sessionStorage.setItem("performance-pass-intro", "seen");
     const timeline = gsap.timeline({ onComplete: () => setVisible(false) });
     timeline
-      .fromTo(performance.current, { yPercent: 110, autoAlpha: 0 }, { yPercent: 0, autoAlpha: 1, duration: .42, ease: "power3.out" })
-      .fromTo(pass.current, { x: -24, autoAlpha: 0 }, { x: 0, autoAlpha: 1, duration: .32, ease: "power2.out" }, "-=.1")
-      .fromTo(tagline.current, { y: 8, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .24 }, "-=.08")
+      .fromTo(brand.current, { y: 24, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .46, ease: "power3.out" })
+      .fromTo(tagline.current, { y: 8, autoAlpha: 0 }, { y: 0, autoAlpha: 1, duration: .26 }, "-=.12")
       .to(root.current, { yPercent: -100, duration: .43, ease: "power3.inOut" }, "+=.04");
 
     return () => { timeline.kill(); };
@@ -32,11 +31,10 @@ export function IntroScreen() {
 
   return (
     <div ref={root} className={styles.intro} aria-hidden="true">
-      <div className={styles.introBrand}>
-        <span className={styles.wordClip}><span ref={performance}>Performance</span></span>
-        <span ref={pass} className={styles.introPass}>Pass</span>
+      <div ref={brand} className={styles.introBrand}>
+        <BrandLockup className={styles.lockup} />
       </div>
-      <p ref={tagline}>Video. Training. Vantaggi.</p>
+      <p ref={tagline}>Membership. Contenuti. Vantaggi.</p>
     </div>
   );
 }

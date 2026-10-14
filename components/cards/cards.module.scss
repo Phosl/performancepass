@@ -14,7 +14,7 @@
 .videoFeatured .media { aspect-ratio: 1.65; }
 .videoFeatured .videoContent h3 { font-size: 1.55rem; }
 
-.courseCard { display: grid; grid-template-columns: .9fr 1.1fr; overflow: hidden; border: 1px solid var(--line); border-radius: 26px; background: var(--surface); box-shadow: var(--shadow); }
+.courseCard { display: grid; grid-template-columns: .9fr 1.1fr; overflow: hidden; border: 1px solid var(--line); border-radius: 26px; background: var(--surface); color: var(--ink); box-shadow: var(--shadow); }
 .courseMedia { position: relative; min-height: 370px; overflow: hidden; }
 .courseOverlay { position: absolute; inset: auto 1rem 1rem; display: flex; align-items: center; justify-content: space-between; color: rgba(255,255,255,.84); font-size: .72rem; font-weight: 700; }
 .courseBody { padding: 2rem; display: flex; flex-direction: column; justify-content: center; }
@@ -24,24 +24,10 @@
 .lessonList li { display: grid; grid-template-columns: 28px 1fr auto; gap: .6rem; align-items: center; font-size: .78rem; font-weight: 650; }
 .lessonList small { color: var(--muted); }
 .lessonIcon { width: 27px; height: 27px; display: grid; place-items: center; border-radius: 50%; background: var(--soft); }
-.lessonList li:nth-last-child(-n+2) { color: var(--muted); }
+.lessonLocked { color: var(--muted); }
 .courseCompact { grid-template-columns: 1fr; }
 .courseCompact .courseMedia { min-height: 235px; }
 .courseCompact .courseBody { padding: 1.5rem; }
-
-.benefitCard { min-height: 360px; display: flex; flex-direction: column; justify-content: space-between; padding: 1.35rem; border-radius: 26px; }
-.benefitTop { display: flex; align-items: center; gap: .6rem; font-size: .75rem; font-weight: 820; letter-spacing: .04em; }
-.partnerMark { width: 34px; height: 34px; display: grid; place-items: center; border-radius: 10px; background: var(--ink); color: white; font-weight: 850; }
-.benefitValue { margin-left: auto; font-family: var(--font-display), sans-serif; font-size: 1.3rem; letter-spacing: -.05em; }
-.benefitBody h3 { max-width: 17rem; margin-top: .45rem; font-family: var(--font-display), sans-serif; font-size: 1.55rem; line-height: 1.05; letter-spacing: -.05em; }
-.benefitBody > p:not(.cardEyebrow) { max-width: 21rem; margin-top: .7rem; font-size: .8rem; line-height: 1.5; color: rgba(25,25,23,.65); }
-.codeButton { width: 100%; min-height: 45px; display: flex; align-items: center; justify-content: space-between; margin-top: 1.25rem; padding: .7rem .8rem; border: 1px solid rgba(25,25,23,.13); border-radius: 13px; background: rgba(255,255,255,.48); cursor: pointer; font-size: .7rem; }
-.codeButton > span { color: var(--muted); }
-.codeButton strong { color: var(--ink); margin-left: .3rem; letter-spacing: .05em; }
-.lime { background: var(--lime); }
-.orange { background: #ffb17e; }
-.blue { background: var(--blue); }
-.violet { background: var(--violet); }
 
 @media (max-width: 700px) {
   .media { border-radius: 18px; }
@@ -49,5 +35,4 @@
   .courseCard { grid-template-columns: 1fr; border-radius: 22px; }
   .courseMedia { min-height: 240px; }
   .courseBody { padding: 1.35rem; }
-  .benefitCard { min-height: 330px; }
 }
