@@ -3,10 +3,11 @@ import styles from "./BrandLockup.module.scss";
 
 type BrandLockupProps = {
   className?: string;
+  layout?: "inline" | "card";
 };
 
-export function BrandLockup({ className }: BrandLockupProps) {
-  const rootClassName = className ? `${styles.root} ${className}` : styles.root;
+export function BrandLockup({ className, layout = "inline" }: BrandLockupProps) {
+  const rootClassName = [styles.root, layout === "card" ? styles.cardLayout : "", className].filter(Boolean).join(" ");
 
   return (
     <span className={rootClassName} role="img" aria-label="Performance Pass by Atletica TV">

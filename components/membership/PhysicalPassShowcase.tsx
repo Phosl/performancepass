@@ -46,26 +46,20 @@ export function PhysicalPassShowcase() {
         </div>
 
         <div className={styles.cardStage}>
-          <div className={styles.orbit} aria-hidden="true" />
           <div
             ref={cardRef}
             className={styles.card}
             onPointerMove={moveCard}
             onPointerLeave={resetCard}
             role="img"
-            aria-label={`Card membership demo intestata a ${profile.name}, numero ${displayedNumber}`}
+            aria-label={`Performance Pass by Atletica TV — ${isMember ? "Membro demo" : "Anteprima demo"}, intestato a ${profile.name || "Atleta"}, numero ${displayedNumber}`}
           >
-            <Image src="/images/generated/pro-pass-surface.webp" alt="" fill sizes="(max-width: 860px) 88vw, 52vw" />
-            <div className={styles.cardGlow} aria-hidden="true" />
-            <div className={styles.cardTop}>
-              <BrandLockup className={styles.cardLockup} />
-              <span className={styles.cardStatus}>MEMBRO DEMO</span>
-            </div>
-            <div className={styles.cardMonogram} aria-hidden="true">P</div>
-            <div className={styles.cardBottom}>
-              <div><small>NOME</small><strong>{profile.name || "Atleta"}</strong></div>
-              <div><small>NUMERO</small><strong>{displayedNumber}</strong></div>
-              <div><small>FIRMA</small><strong>Atletica TV</strong></div>
+            <Image className={styles.trackArtwork} src="/brand/performance-pass-demo.jpg" alt="" fill sizes="(max-width: 900px) 94vw, 620px" />
+            <BrandLockup layout="card" />
+            <div className={styles.cardDetails} aria-hidden="true">
+              <span className={styles.cardNumber}>{displayedNumber}</span>
+              <strong className={styles.cardName}>{profile.name || "Atleta"}</strong>
+              <span className={styles.cardStatus}>{isMember ? "MEMBRO DEMO" : "ANTEPRIMA DEMO"}</span>
             </div>
           </div>
           <span className={styles.cardCaption}>Card membership · anteprima locale non operativa</span>
